@@ -28,6 +28,7 @@ public class SceneManager {
     FXMLLoader loader = new FXMLLoader(resource);
     controller.setStage(stage);
     loader.setController(controller);
+
     Parent root = loader.load();
     stage.setScene(new Scene(root, width, height));
   }
@@ -36,14 +37,11 @@ public class SceneManager {
   public static void changeScene(MemberDAO dao, Stage stage, URL resource, Controller controller)
       throws IOException {
     FXMLLoader loader = new FXMLLoader(resource);
-//    Controller controller = loader.getController();
     controller.setDao(dao);
     controller.setStage(stage);
-
     loader.setController(controller);
 
     Parent root = loader.load();
-
     stage.setScene(new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
   }

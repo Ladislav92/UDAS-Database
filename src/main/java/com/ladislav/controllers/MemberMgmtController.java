@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -63,6 +64,10 @@ public class MemberMgmtController implements Controller, Initializable {
     membersTableView.setEditable(false);
     displayAllMembers();
 
+    if (!membersTableView.getSelectionModel().isEmpty()) {
+      membersTableView.getSelectionModel().selectFirst();
+    }
+
   }
 
   public void onBackBtnClicked() throws IOException {
@@ -87,12 +92,18 @@ public class MemberMgmtController implements Controller, Initializable {
     }
 
     membersTableView.setItems(memberObservableList);
+
   }
 
   @FXML
-  public void openNewMemberDialog() {
+  public void openNewMemberDialog(ActionEvent actionEvent) {
     try {
-      SceneManager.changeScene(dataAdapter, stage,  getClass().getResource("/view/add_member.fxml"), new AddMemberController());
+      SceneManager.changeScene(
+          dataAdapter,
+          stage,
+          getClass().getResource("/view/add_member.fxml"),
+          new AddMemberController()
+      );
     } catch (IOException e) {
       e.printStackTrace();
     }
