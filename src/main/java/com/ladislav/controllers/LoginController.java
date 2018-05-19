@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.SQLAccess;
+import com.ladislav.model.data.MySqlAdapter;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class LoginController implements Controller {
 
-  SQLAccess sqlAccess;
+  MySqlAdapter mySqlAdapter;
 
   @FXML
   Stage stage;
@@ -30,8 +30,8 @@ public class LoginController implements Controller {
   }
 
   @Override
-  public void setDao(SQLAccess dao) {
-    sqlAccess = dao;
+  public void setDao(MySqlAdapter dao) {
+    mySqlAdapter = dao;
   }
 
   @FXML
@@ -41,14 +41,14 @@ public class LoginController implements Controller {
     String password = passwordField.getText();
 
     try {
-      sqlAccess = new SQLAccess(username, password);
+      mySqlAdapter = new MySqlAdapter(username, password);
     } catch (SQLException e) {
       // TODO print error dialog
       e.printStackTrace();
     }
 
     try {
-      SceneManager.changeScene(sqlAccess, stage, getClass().getResource("/view/navigation.fxml"), 300, 275);
+      SceneManager.changeScene(mySqlAdapter, stage, getClass().getResource("/view/navigation.fxml"), 300, 275);
     } catch (IOException e) {
       e.printStackTrace();
 

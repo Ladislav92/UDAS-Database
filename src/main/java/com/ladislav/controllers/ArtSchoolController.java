@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.SQLAccess;
+import com.ladislav.model.data.MySqlAdapter;
 import javafx.stage.Stage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -14,7 +14,7 @@ public class ArtSchoolController implements Controller {
   }
 
   @Override
-  public void setDao(SQLAccess dao) {
+  public void setDao(MySqlAdapter dao) {
     throw new NotImplementedException();
   }
 }

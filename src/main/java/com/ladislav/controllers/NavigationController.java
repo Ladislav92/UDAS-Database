@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.SQLAccess;
+import com.ladislav.model.data.MySqlAdapter;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -13,7 +13,7 @@ public class NavigationController implements Controller {
   @FXML
   Stage stage;
 
-  SQLAccess dataAccess;
+  MySqlAdapter dataAccess;
 
 
   @FXML
@@ -50,7 +50,7 @@ public class NavigationController implements Controller {
   }
 
   @Override
-  public void setDao(SQLAccess dao) {
+  public void setDao(MySqlAdapter dao) {
     dataAccess = dao;
   }
 

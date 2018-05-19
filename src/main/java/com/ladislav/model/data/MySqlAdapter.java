@@ -11,42 +11,40 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Frankensteins monster to access the data from DB. Should be improved
+ * Frankensteins monster to access the data from DB. Probably should be extracted to
+ * server side app and act as web client.
  *
  * @author Ladislav
  */
-public class SQLAccess implements MemberDAO {
+public class MySqlAdapter implements MemberDAO {
 
   Connection connection;
 
-  public SQLAccess(String username, String password) throws SQLException {
+  public MySqlAdapter(String username, String password) throws SQLException {
     connection = ConnectionFactory.getConnection();
   }
 
   public void createMember(Member member) {
 
   }
-
   public boolean deleteMember(Member member) throws SQLException {
     ResultSet resultSet = executeQuery("DELETE FROM clan where id_clan = " + member.getMemberID());
     return resultSet.next();
   }
 
-  public void updateMember(Member member) {
-
+  public boolean updateMember(Member member) {
+    return false;
   }
 
   public Member getMember(Member member) {
-
     return null;
   }
-
 
   public List<Member> getMembers(HashMap<String, String> searchParameters) {
     return null;
   }
 
-  public List<Member> getAllMembers() throws SQLException {
+  public List<Member> getMembers() throws SQLException {
 
     String query = " SELECT id_clan, ime, prezime, JMBG, datum_rodjenja, tel1, tel2, mjesto.mjesto,\n"
         + "        mjesna_zajednica.mjesna_zajednica, ulica, broj_stana_kuce, clanovi_domacinstva, datum_smrti,\n"
@@ -100,13 +98,7 @@ public class SQLAccess implements MemberDAO {
     return members;
   }
 
-  private ResultSet executeQuery(String query) throws SQLException {
-    Statement statement = connection.createStatement();
-    return statement.executeQuery(query);
-
-  }
-
-  private List<Injury> getInjuries(int id) throws SQLException {
+  public List<Injury> getInjuries(int id) throws SQLException {
 
     List<Injury> injuries = new ArrayList<>();
 
@@ -128,10 +120,57 @@ public class SQLAccess implements MemberDAO {
     return injuries;
   }
 
+  public List<String> getCities() {
+    return null;
+  }
+
+  public List<String> getProvinces() {
+    return null;
+  }
+
+  public List<String> getEducationLevels() {
+    return null;
+  }
+
+  public List<String> getProffesions() {
+   return null;
+  }
+
+ public List<String> getInvalidityStatuses() {
+    return null;
+  }
+
+  public List<String> getInvalidityKategories() {
+    return null;
+  }
+
+  public List<String> getInvlaidityPercentage() {
+    return null;
+  }
+
+  public List<String> getWorkStatuses() {
+    return null;
+  }
+
+  public List<String> getInjuryCauses() {
+    return null;
+  }
+
+  private ResultSet executeQuery(String query) throws SQLException {
+    Statement statement = connection.createStatement();
+    return statement.executeQuery(query);
+
+  }
+
+  /**
+   *
+   * For testing purpose
+   *
+   * */
   public static void main(String[] args) throws SQLException {
 
-    SQLAccess access = new SQLAccess("Lado", "lado");
-    access.getAllMembers().forEach(System.out::println);
+    MySqlAdapter access = new MySqlAdapter("Lado", "lado");
+    access.getMembers().forEach(System.out::println);
 
   }
 

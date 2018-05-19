@@ -1,13 +1,11 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MemberDAO;
-import com.ladislav.model.data.SQLAccess;
+import com.ladislav.model.data.MySqlAdapter;
 import com.ladislav.model.member.Member;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class MemberMgmtController implements Controller, Initializable {
 
-  private SQLAccess dataAccess;
+  private MySqlAdapter data;
 
   @FXML
   private Stage stage;
@@ -40,8 +37,8 @@ public class MemberMgmtController implements Controller, Initializable {
     this.stage = stage;
   }
 
-  public void setDao(SQLAccess dao) {
-    dataAccess = dao;
+  public void setDao(MySqlAdapter dao) {
+    data = dao;
   }
 
   public void onBackBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -65,8 +62,8 @@ public class MemberMgmtController implements Controller, Initializable {
   public void onSearchButtonClicked(ActionEvent actionEvent) {
     ObservableList<Member> memberObservableList = null;
     try {
-      System.out.println(dataAccess.getAllMembers());
-      memberObservableList = FXCollections.observableArrayList(dataAccess.getAllMembers());
+      System.out.println(data.getMembers());
+      memberObservableList = FXCollections.observableArrayList(data.getMembers());
     } catch (SQLException e) {
       e.printStackTrace();
     }
