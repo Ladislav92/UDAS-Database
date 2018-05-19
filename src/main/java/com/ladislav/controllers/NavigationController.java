@@ -24,8 +24,7 @@ public class NavigationController implements Controller {
                 dataAdapter,
                 stage,
                 getClass().getResource("/view/member_management.fxml"),
-                800,
-                600
+                new MemberMgmtController()
             );
   }
 
@@ -34,7 +33,7 @@ public class NavigationController implements Controller {
   }
 
   public void onLogoutBtnClicked(ActionEvent actionEvent) throws IOException {
-    SceneManager.changeScene(stage, getClass().getResource("/view/login.fxml"));
+    SceneManager.changeScene(stage, getClass().getResource("/view/login.fxml"), new LoginController());
   }
 
   public void showFeatureUnavailableDialog() {

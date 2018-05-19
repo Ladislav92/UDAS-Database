@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.CheckComboBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ladislav.controllers.MemberMgmtController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
   <top>
     <VBox>
       <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -52,7 +52,7 @@
       </MenuBar>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Novi član" />
+          <Button fx:id="newMemberButton" onAction="#openNewMemberDialog" mnemonicParsing="false" text="Novi član" />
           <Button mnemonicParsing="false" text="Izmijeni člana" />
           <Button mnemonicParsing="false" text="Obriši člana" />
           <Button mnemonicParsing="false" text="Detaljno" />

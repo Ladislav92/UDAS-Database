@@ -63,7 +63,7 @@ public class LoginController implements Controller {
     }
 
     try {
-      SceneManager.changeScene(dataAdapter, stage, getClass().getResource("/view/navigation.fxml"), 300, 275);
+      SceneManager.changeScene(dataAdapter, stage, getClass().getResource("/view/navigation.fxml"), new NavigationController());
     } catch (IOException e) {
       e.printStackTrace();
     }

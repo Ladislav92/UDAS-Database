@@ -16,33 +16,38 @@ import javafx.stage.Stage;
 
 public class SceneManager {
 
-  public static final int DEFAULT_WIDTH = 300;
-  public static final int DEFAULT_HEIGHT = 275;
+  public static final int DEFAULT_WIDTH = 800;
+  public static final int DEFAULT_HEIGHT = 600;
 
-  public static void changeScene(Stage stage, URL resource) throws IOException {
-    changeScene(stage, resource, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+  public static void changeScene(Stage stage, URL resource, Controller controller) throws IOException {
+    changeScene(stage, resource, controller, DEFAULT_WIDTH, DEFAULT_HEIGHT);
   }
 
-  public static void changeScene(Stage stage, URL resource, int width, int height)
+  public static void changeScene(Stage stage, URL resource, Controller controller, int width, int height)
       throws IOException {
     FXMLLoader loader = new FXMLLoader(resource);
-    Parent root = loader.load();
-    Controller controller = loader.getController();
     controller.setStage(stage);
+    loader.setController(controller);
+    Parent root = loader.load();
     stage.setScene(new Scene(root, width, height));
   }
 
-  //TODO implement it the way controller is passed to loader, so initialize can be used better
-  public static void changeScene(MemberDAO dao, Stage stage, URL resource, int width, int height)
+
+  public static void changeScene(MemberDAO dao, Stage stage, URL resource, Controller controller)
       throws IOException {
     FXMLLoader loader = new FXMLLoader(resource);
-    Parent root = loader.load();
-    Controller controller = loader.getController();
+//    Controller controller = loader.getController();
     controller.setDao(dao);
     controller.setStage(stage);
-    stage.setScene(new Scene(root, width, height));
+
+    loader.setController(controller);
+
+    Parent root = loader.load();
+
+    stage.setScene(new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
   }
+
 
 }
 

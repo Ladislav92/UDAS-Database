@@ -25,9 +25,10 @@ public class Main extends Application {
   public void start(Stage primaryStage) throws Exception {
 
     FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
-    Parent root = loginLoader.load();
 
-    LoginController loginController = loginLoader.getController();
+    LoginController loginController = new LoginController();
+    loginLoader.setController(loginController);
+    Parent root = loginLoader.load();
     loginController.setStage(primaryStage);
     primaryStage.setTitle("Dobrodošli!");
     primaryStage.setScene(new Scene(root, 300, 275));

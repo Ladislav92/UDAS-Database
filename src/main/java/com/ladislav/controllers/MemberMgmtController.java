@@ -61,16 +61,22 @@ public class MemberMgmtController implements Controller, Initializable {
     phoneOneCol.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
     phoneTwoCol.setCellValueFactory(cellData -> cellData.getValue().phoneNumber2Property());
     membersTableView.setEditable(false);
+    displayAllMembers();
 
   }
 
   public void onBackBtnClicked() throws IOException {
-    SceneManager.changeScene(stage, getClass().getResource("/view/navigation.fxml"));
+    SceneManager.changeScene(stage, getClass().getResource("/view/navigation.fxml"), new NavigationController());
   }
 
   @FXML
   public void onSearchButtonClicked() {
+    //TODO Display members based on query ! ! !
 
+    displayAllMembers();
+  }
+
+  public void displayAllMembers() {
     ObservableList<Member> memberObservableList = null;
 
     try {
@@ -81,5 +87,14 @@ public class MemberMgmtController implements Controller, Initializable {
     }
 
     membersTableView.setItems(memberObservableList);
+  }
+
+  @FXML
+  public void openNewMemberDialog() {
+    try {
+      SceneManager.changeScene(dataAdapter, stage,  getClass().getResource("/view/add_member.fxml"), new AddMemberController());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.141"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ladislav.controllers.NavigationController">
+  xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints/>
   </columnConstraints>
