@@ -2,7 +2,6 @@ package com.ladislav.util;
 
 import com.ladislav.controllers.Controller;
 import com.ladislav.model.data.MemberDAO;
-import com.ladislav.model.data.MySqlAdapter;
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
