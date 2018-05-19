@@ -115,7 +115,7 @@ public class MySqlAdapter implements MemberDAO {
       String mjesna_zajednica = resultSet.getString("mjesna_zajednica");
       String ulica = resultSet.getString("ulica");
       String broj_stana_kuce = resultSet.getString("broj_stana_kuce");
-      int clanoviDom = resultSet.getInt("clanovi_domacinstva");
+      String clanoviDom = resultSet.getString("clanovi_domacinstva");
       String datum_smrti = resultSet.getString("datum_smrti");
       String stepen_obrazovanja = resultSet.getString("stepen_obrazovanja");
       String zanimanje = resultSet.getString("zanimanje");
