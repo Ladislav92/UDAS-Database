@@ -11,11 +11,10 @@ public class Member {
   private SimpleStringProperty surname;
   private SimpleStringProperty identityNumber;
 
-
   private SimpleStringProperty cityProvince;
   private SimpleStringProperty street;
   private SimpleStringProperty homeNumber;
-  private int peopleInHousehold;
+  private SimpleStringProperty peopleInHousehold;
   private SimpleStringProperty sex;
   private SimpleStringProperty comments;
   private int memberID;
@@ -77,7 +76,7 @@ public class Member {
     return homeNumber;
   }
 
-  public int getPeopleInHousehold() {
+  public SimpleStringProperty getPeopleInHousehold() {
     return peopleInHousehold;
   }
 
@@ -216,7 +215,7 @@ public class Member {
 
   public Member(int memberID, String name, String surname,
       String identityNumber, String dateOfBirth, String phoneNumber1, String phoneNumber2,
-      String city, String cityProvince, String street, String homeNumber, int peopleInHousehold,
+      String city, String cityProvince, String street, String homeNumber, String peopleInHousehold,
       String dateOfDeath, String educationLevel, String profession,
       String workStatus, String injuryCause, String invalidityStatus,
       String housingQuestion, String sex, String comments, List<Injury> injuries) {
@@ -232,7 +231,7 @@ public class Member {
     this.cityProvince = new SimpleStringProperty(cityProvince);
     this.street = new SimpleStringProperty(street);
     this.homeNumber = new SimpleStringProperty(homeNumber);
-    this.peopleInHousehold = peopleInHousehold;
+    this.peopleInHousehold = new SimpleStringProperty(peopleInHousehold);
     this.deathDate = new SimpleStringProperty(dateOfDeath);
     this.educationLevel = new SimpleStringProperty(educationLevel);
     this.proffesion = new SimpleStringProperty(profession);
