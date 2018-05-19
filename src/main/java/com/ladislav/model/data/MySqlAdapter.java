@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Frankensteins monster to access the data from DB. Probably should be extracted to
@@ -24,26 +25,64 @@ public class MySqlAdapter implements MemberDAO {
     connection = ConnectionFactory.getConnection();
   }
 
-  public void createMember(Member member) {
-
+  /**
+   * Inserts member received in parameter into database by executing query.
+   *
+   * @param member to be inserted
+   * @return True or false if member exists or insertion failed.
+   * @throws SQLException
+   */
+  @Override
+  public boolean addMember(Member member) {
+    return false;
   }
+
+  /**
+   *
+   * Removes member from database based on membersID.
+   *
+   * @param member to be removed
+   * @return true or false if member does not exist or removal was unsuccessful.
+   * @throws SQLException
+   */
+  @Override
   public boolean deleteMember(Member member) throws SQLException {
     ResultSet resultSet = executeQuery("DELETE FROM clan where id_clan = " + member.getMemberID());
     return resultSet.next();
   }
 
+  /**
+   * Changes certain data on existing member.
+   *
+   *
+   * @param member member object carrying changes
+   * @return False if member does not exist or change did not succeed.
+   */
+  @Override
   public boolean updateMember(Member member) {
     return false;
   }
 
-  public Member getMember(Member member) {
+
+  /**
+   * Returns list of member object based on query.
+   *
+   * Search parameters should contain attribute name as key and desired value as value in Map provided.
+   *
+   * @param searchParameters Map
+   * @return
+   */
+  @Override
+  public List<Member> getMembers(Map<String, String> searchParameters) {
     return null;
   }
 
-  public List<Member> getMembers(HashMap<String, String> searchParameters) {
-    return null;
-  }
-
+  /**
+   *  Returns list that contains all the members that database holds.
+   *  If there are no member entries in the DB, empty list is returned.
+   * @return List of members.
+   * @throws SQLException
+   */
   public List<Member> getMembers() throws SQLException {
 
     String query = " SELECT id_clan, ime, prezime, JMBG, datum_rodjenja, tel1, tel2, mjesto.mjesto,\n"
@@ -98,7 +137,14 @@ public class MySqlAdapter implements MemberDAO {
     return members;
   }
 
-  public List<Injury> getInjuries(int id) throws SQLException {
+  /**
+   * Helper method for getMembers. It exists to collect all the injuries member has.
+   * It's implemented separately because Injury table has Many-To-Many relationship.
+   * @param id - members ID
+   * @return List that contains Injury objects
+   * @throws SQLException
+   */
+  private List<Injury> getInjuries(int id) throws SQLException {
 
     List<Injury> injuries = new ArrayList<>();
 
@@ -120,39 +166,123 @@ public class MySqlAdapter implements MemberDAO {
     return injuries;
   }
 
+  /**
+   * Returns all cities database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to add new cities trough add/change member
+   * directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
   public List<String> getCities() {
     return null;
   }
 
+  /**
+   * Returns all city provinces database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to change city entries trough add/change member
+   * directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
   public List<String> getProvinces() {
     return null;
   }
 
+  /**
+   * Returns all education levels database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change member
+   * directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
   public List<String> getEducationLevels() {
     return null;
   }
 
-  public List<String> getProffesions() {
+  /**
+   * Returns all professions database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change member
+   * directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
+  public List<String> getProfessions() {
    return null;
   }
 
+  /**
+   * Returns all invalidity statuses database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change
+   * dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
  public List<String> getInvalidityStatuses() {
     return null;
   }
 
-  public List<String> getInvalidityKategories() {
+  /**
+   * Returns all invalidity categories database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change
+   * dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
+  public List<String> getInvalidityCategories() {
     return null;
   }
 
-  public List<String> getInvlaidityPercentage() {
+  /**
+   * Returns all invalidity percentage values that database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change
+   * dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
+  public List<String> getInvalidityPercentage() {
     return null;
   }
 
-  public List<String> getWorkStatuses() {
+  /**
+   * Returns all Employment status values that database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change
+   * dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
+  public List<String> getEmploymentStatuses() {
     return null;
   }
 
+  /**
+   * Returns all injury causes values that database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change
+   * dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
   public List<String> getInjuryCauses() {
+    return null;
+  }
+
+  /**
+   * Returns all injury type values that database holds. It's used to populate comboboxes for
+   * inserting and changing members. User is not allowed to make changes on this table trough add/change
+   * dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
+  public List<String> getInjuryTypes() {
     return null;
   }
 

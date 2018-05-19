@@ -4,18 +4,17 @@ import com.ladislav.model.member.Member;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface MemberDAO {
 
   List<Member> getMembers() throws SQLException;
 
-  void createMember(Member member);
+  boolean addMember(Member member);
 
   boolean deleteMember(Member member) throws SQLException;
 
   boolean updateMember(Member member);
-
-  Member getMember(Member member);
 
   List<String> getCities();
 
@@ -23,19 +22,22 @@ public interface MemberDAO {
 
   List<String> getEducationLevels();
 
-  List<String> getProffesions();
+  List<String> getProfessions();
 
   List<String> getInvalidityStatuses();
 
-  List<String> getInvalidityKategories();
+  List<String> getInvalidityCategories();
 
-  List<String> getInvlaidityPercentage();
+  List<String> getInvalidityPercentage();
 
-  List<String> getWorkStatuses();
+  List<String> getEmploymentStatuses();
 
   List<String> getInjuryCauses();
 
-  List<Member> getMembers(HashMap<String, String> searchParameters);
+  List<String> getInjuryTypes();
+
+  List<Member> getMembers(Map<String, String> searchParameters);
+
 
 
 }
