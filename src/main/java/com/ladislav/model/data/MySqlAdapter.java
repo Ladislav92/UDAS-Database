@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Frankensteins monster to access the data from DB. Probably should be extracted to
@@ -34,7 +35,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public boolean addMember(Member member) {
-    return false;
+    throw new NotImplementedException();
   }
 
   /**
@@ -60,7 +61,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public boolean updateMember(Member member) {
-    return false;
+    throw new NotImplementedException();
   }
 
 
@@ -74,7 +75,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<Member> getMembers(Map<String, String> searchParameters) {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -175,7 +176,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getCities() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -187,7 +188,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getProvinces() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -199,7 +200,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getEducationLevels() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -211,7 +212,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getProfessions() {
-   return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -223,7 +224,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
  public List<String> getInvalidityStatuses() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -235,7 +236,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getInvalidityCategories() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -247,7 +248,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getInvalidityPercentage() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -259,7 +260,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getEmploymentStatuses() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -271,7 +272,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getInjuryCauses() {
-    return null;
+    throw new NotImplementedException();
   }
 
   /**
@@ -283,7 +284,7 @@ public class MySqlAdapter implements MemberDAO {
    */
   @Override
   public List<String> getInjuryTypes() {
-    return null;
+    throw new NotImplementedException();
   }
 
   private ResultSet executeQuery(String query) throws SQLException {
@@ -303,6 +304,5 @@ public class MySqlAdapter implements MemberDAO {
     access.getMembers().forEach(System.out::println);
 
   }
-
 }
 
