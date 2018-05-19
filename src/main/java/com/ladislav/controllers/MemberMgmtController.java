@@ -26,12 +26,18 @@ public class MemberMgmtController implements Controller, Initializable {
   @FXML
   TableView<Member> membersTableView;
 
-  @FXML TableColumn<Member, String> nameCol;
-  @FXML TableColumn<Member, String> surnameCol;
-  @FXML TableColumn<Member, String> cityCol;
-  @FXML TableColumn<Member, String> addressCol;
-  @FXML TableColumn<Member, String> phoneOneCol;
-  @FXML TableColumn<Member, String> phoneTwoCol;
+  @FXML
+  TableColumn<Member, String> nameCol;
+  @FXML
+  TableColumn<Member, String> surnameCol;
+  @FXML
+  TableColumn<Member, String> cityCol;
+  @FXML
+  TableColumn<Member, String> addressCol;
+  @FXML
+  TableColumn<Member, String> phoneOneCol;
+  @FXML
+  TableColumn<Member, String> phoneTwoCol;
 
   public void setStage(Stage stage) {
     this.stage = stage;
