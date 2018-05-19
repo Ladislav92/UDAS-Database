@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MySqlAdapter;
+import com.ladislav.model.data.MemberDAO;
 import com.ladislav.model.member.Member;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -18,14 +17,13 @@ import javafx.stage.Stage;
 
 public class MemberMgmtController implements Controller, Initializable {
 
-  private MySqlAdapter data;
+  private MemberDAO dataAdapter;
 
   @FXML
   private Stage stage;
 
   @FXML
   TableView<Member> membersTableView;
-
   @FXML
   TableColumn<Member, String> nameCol;
   @FXML
@@ -43,12 +41,9 @@ public class MemberMgmtController implements Controller, Initializable {
     this.stage = stage;
   }
 
-  public void setDao(MySqlAdapter dao) {
-    data = dao;
-  }
-
-  public void onBackBtnClicked(ActionEvent actionEvent) throws IOException {
-    SceneManager.changeScene(stage, getClass().getResource("/view/navigation.fxml"));
+  @Override
+  public void setDao(MemberDAO dao) {
+    dataAdapter = dao;
   }
 
   @Override
@@ -64,12 +59,18 @@ public class MemberMgmtController implements Controller, Initializable {
 
   }
 
+  public void onBackBtnClicked() throws IOException {
+    SceneManager.changeScene(stage, getClass().getResource("/view/navigation.fxml"));
+  }
+
   @FXML
-  public void onSearchButtonClicked(ActionEvent actionEvent) {
+  public void onSearchButtonClicked() {
+
     ObservableList<Member> memberObservableList = null;
+
     try {
-      System.out.println(data.getMembers());
-      memberObservableList = FXCollections.observableArrayList(data.getMembers());
+      System.out.println(dataAdapter.getMembers());
+      memberObservableList = FXCollections.observableArrayList(dataAdapter.getMembers());
     } catch (SQLException e) {
       e.printStackTrace();
     }

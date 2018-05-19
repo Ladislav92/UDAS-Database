@@ -1,7 +1,6 @@
 package com.ladislav.controllers;
 
 import com.ladislav.model.data.MemberDAO;
-import com.ladislav.model.data.MySqlAdapter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -9,8 +8,8 @@ import javafx.stage.Stage;
 
 public class AddMemberController implements Controller, Initializable {
 
-  Stage stage;
-  MemberDAO dataAdapter;
+  private Stage stage;
+  private MemberDAO dataAdapter;
 
  @Override
   public void setStage(Stage stage) {
@@ -18,8 +17,8 @@ public class AddMemberController implements Controller, Initializable {
   }
 
   @Override
-  public void setDao(MySqlAdapter dao) {
-
+  public void setDao(MemberDAO dao) {
+    dataAdapter = dao;
   }
 
   @Override

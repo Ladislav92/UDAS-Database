@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MySqlAdapter;
+import com.ladislav.model.data.MemberDAO;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -11,17 +11,17 @@ import javafx.stage.Stage;
 public class NavigationController implements Controller {
 
   @FXML
+  private
   Stage stage;
 
-  MySqlAdapter dataAccess;
-
+  private MemberDAO dataAdapter;
 
   @FXML
   public void onMembersBtnClicked(ActionEvent actionEvent) throws IOException {
     SceneManager
         .changeScene
             (
-                dataAccess,
+                dataAdapter,
                 stage,
                 getClass().getResource("/view/member_management.fxml"),
                 800,
@@ -50,8 +50,8 @@ public class NavigationController implements Controller {
   }
 
   @Override
-  public void setDao(MySqlAdapter dao) {
-    dataAccess = dao;
+  public void setDao(MemberDAO dao) {
+    dataAdapter =  dao;
   }
 
 }

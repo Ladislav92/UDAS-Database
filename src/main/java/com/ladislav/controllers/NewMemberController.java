@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MySqlAdapter;
+import com.ladislav.model.data.MemberDAO;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 public class NewMemberController implements Controller {
 
   @FXML
+  private
   Stage stage;
-
-  MySqlAdapter dataAccess;
+  private MemberDAO dataAdapter;
 
   @Override
   public void setStage(Stage stage) {
@@ -18,7 +18,8 @@ public class NewMemberController implements Controller {
   }
 
   @Override
-  public void setDao(MySqlAdapter dao) {
-    dataAccess = dao;
+  public void setDao(MemberDAO dao) {
+    dataAdapter = dao;
   }
+
 }

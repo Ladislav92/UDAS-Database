@@ -1,6 +1,7 @@
 package com.ladislav.util;
 
 import com.ladislav.controllers.Controller;
+import com.ladislav.model.data.MemberDAO;
 import com.ladislav.model.data.MySqlAdapter;
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,7 @@ public class SceneManager {
   }
 
   //TODO implement it the way controller is passed to loader, so initialize can be used better
-  public static void changeScene(MySqlAdapter dao, Stage stage, URL resource, int width, int height)
+  public static void changeScene(MemberDAO dao, Stage stage, URL resource, int width, int height)
       throws IOException {
     FXMLLoader loader = new FXMLLoader(resource);
     Parent root = loader.load();
@@ -41,7 +42,6 @@ public class SceneManager {
     controller.setDao(dao);
     controller.setStage(stage);
     stage.setScene(new Scene(root, width, height));
-
 
   }
 
