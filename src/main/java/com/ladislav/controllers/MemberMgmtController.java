@@ -15,6 +15,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+/**
+ *  Here happens all the important stuff for end user.
+ *  Members can be searched, queried added/updated/deleted.
+ */
+
 public class MemberMgmtController implements Controller, Initializable {
 
   private MemberDAO dataAdapter;

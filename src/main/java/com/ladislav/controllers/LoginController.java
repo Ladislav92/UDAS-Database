@@ -10,6 +10,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
+/**
+ *  This part of app controls will user go further or not.
+ *  If the login to server is successful - scene will be switched to navigation and MemberDAO will be instantiated.
+ *  If not dialog/message will pop up.
+ */
 public class LoginController implements Controller {
 
   private MemberDAO dataAdapter;
@@ -35,6 +41,14 @@ public class LoginController implements Controller {
     dataAdapter = dao;
   }
 
+  /**
+   * Place where MemberDAO is created if login was successful.
+   *
+   * NOTE: MySqlAdapter can be switched here to any other implementation of MemberDAO without any impact
+   * on the application if MemberDAO is implemented correctly. https://imgflip.com/i/2al8ve
+   *
+   */
+
   @FXML
   public void onLoginBtnClicked() {
 
@@ -52,7 +66,6 @@ public class LoginController implements Controller {
       SceneManager.changeScene(dataAdapter, stage, getClass().getResource("/view/navigation.fxml"), 300, 275);
     } catch (IOException e) {
       e.printStackTrace();
-
     }
   }
 }
