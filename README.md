@@ -33,7 +33,7 @@ that are containing data as city, province, injury type, invalidity kategory, wo
 
 *Database names are currently on Serbian language, I will try to change it as soon as possible.
 
-![ER Diagram](https://i.imgur.com/gpYemqK.png "ER Diagram")
+![ER Diagram](https://i.imgur.com/nNNRNdw.png "ER Diagram")
 
 ### How to build?
 
