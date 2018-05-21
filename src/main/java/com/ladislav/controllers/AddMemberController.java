@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MemberDAO;
+import com.ladislav.model.data.DataAdapter;
 import com.ladislav.model.member.Member;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class AddMemberController implements Controller, Initializable {
   @FXML
   private
   Stage stage;
-  private MemberDAO dataAdapter;
+  private DataAdapter dataAdapter;
 
   @Override
   public void setStage(Stage stage) {
@@ -25,8 +25,8 @@ public class AddMemberController implements Controller, Initializable {
   }
 
   @Override
-  public void setDao(MemberDAO dao) {
-    dataAdapter = dao;
+  public void setDao(DataAdapter dataAdapter) {
+    this.dataAdapter = dataAdapter;
   }
 
   @FXML

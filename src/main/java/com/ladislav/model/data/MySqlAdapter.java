@@ -17,7 +17,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * @author Ladislav
  */
-public class MySqlAdapter implements MemberDAO {
+public class MySqlAdapter implements DataAdapter {
 
   Connection connection;
 
@@ -59,7 +59,7 @@ public class MySqlAdapter implements MemberDAO {
    * @return False if member does not exist or change did not succeed.
    */
   @Override
-  public boolean updateMember(Member member) {
+  public boolean updateMember(int id) {
     throw new NotImplementedException();
   }
 

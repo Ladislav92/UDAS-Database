@@ -1,7 +1,7 @@
 package com.ladislav.util;
 
 import com.ladislav.controllers.Controller;
-import com.ladislav.model.data.MemberDAO;
+import com.ladislav.model.data.DataAdapter;
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +34,7 @@ public class SceneManager {
   }
 
 
-  public static void changeScene(MemberDAO dao, Stage stage, URL resource, Controller controller)
+  public static void changeScene(DataAdapter dao, Stage stage, URL resource, Controller controller)
       throws IOException {
     FXMLLoader loader = new FXMLLoader(resource);
     controller.setDao(dao);
@@ -45,7 +45,5 @@ public class SceneManager {
     stage.setScene(new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
   }
-
-
 }
 

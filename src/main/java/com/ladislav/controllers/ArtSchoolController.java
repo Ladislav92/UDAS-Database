@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MemberDAO;
+import com.ladislav.model.data.DataAdapter;
 import javafx.stage.Stage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -13,7 +13,7 @@ public class ArtSchoolController implements Controller {
   }
 
   @Override
-  public void setDao(MemberDAO dao) {
+  public void setDao(DataAdapter dataAdapter) {
       throw new NotImplementedException();
   }
 }

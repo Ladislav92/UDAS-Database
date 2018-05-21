@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MemberDAO;
+import com.ladislav.model.data.DataAdapter;
 import com.ladislav.model.member.Member;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
@@ -17,13 +17,13 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
- *  Here happens all the important stuff for end user.
+ *  Here happens most of the important stuff for an end user.
  *  Members can be searched, queried added/updated/deleted.
  */
 
 public class MemberMgmtController implements Controller, Initializable {
 
-  private MemberDAO dataAdapter;
+  private DataAdapter dataAdapter;
 
   @FXML
   private Stage stage;
@@ -48,8 +48,8 @@ public class MemberMgmtController implements Controller, Initializable {
   }
 
   @Override
-  public void setDao(MemberDAO dao) {
-    dataAdapter = dao;
+  public void setDao(DataAdapter dataAdapter) {
+    this.dataAdapter = dataAdapter;
   }
 
   @Override
@@ -92,7 +92,6 @@ public class MemberMgmtController implements Controller, Initializable {
     }
 
     membersTableView.setItems(memberObservableList);
-
   }
 
   @FXML

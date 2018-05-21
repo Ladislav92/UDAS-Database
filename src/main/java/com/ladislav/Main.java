@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *  After successful login, navigation scene is loaded. From there user can go to member management or admin panel,
  *  as well as log out.
  *
- *  Although this class is entry point of application, LoginController does important job - initializes MemberDAO object
+ *  Although this class is entry point of application, LoginController does important job - initializes DataAdapter object
  *  if login is successful.
  *
  */

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-public interface MemberDAO {
+public interface DataAdapter {
 
   List<Member> getMembers() throws SQLException;
 
@@ -13,7 +13,7 @@ public interface MemberDAO {
 
   boolean deleteMember(Member member) throws SQLException;
 
-  boolean updateMember(Member member);
+  boolean updateMember(int id);
 
   List<String> getCities();
 

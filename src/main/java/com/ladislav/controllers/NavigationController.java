@@ -1,6 +1,6 @@
 package com.ladislav.controllers;
 
-import com.ladislav.model.data.MemberDAO;
+import com.ladislav.model.data.DataAdapter;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -14,7 +14,7 @@ public class NavigationController implements Controller {
   private
   Stage stage;
 
-  private MemberDAO dataAdapter;
+  private DataAdapter dataAdapter;
 
   @FXML
   public void onMembersBtnClicked(ActionEvent actionEvent) throws IOException {
@@ -49,8 +49,8 @@ public class NavigationController implements Controller {
   }
 
   @Override
-  public void setDao(MemberDAO dao) {
-    dataAdapter =  dao;
+  public void setDao(DataAdapter dataAdapter) {
+    this.dataAdapter =  dataAdapter;
   }
 
 }
