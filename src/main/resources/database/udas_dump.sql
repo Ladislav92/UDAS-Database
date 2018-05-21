@@ -127,7 +127,9 @@ CREATE TABLE `injury` (
   `amputation` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `clan_idx` (`member_id`),
-  KEY `mjesto_povrede_idx` (`injury_location_id`)
+  KEY `mjesto_povrede_idx` (`injury_location_id`),
+  CONSTRAINT `injury_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `injury_ibfk_2` FOREIGN KEY (`injury_location_id`) REFERENCES `injury_location` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -285,7 +287,8 @@ CREATE TABLE `member` (
   CONSTRAINT `member_ibfk_5` FOREIGN KEY (`injury_cause_id`) REFERENCES `injury_cause` (`id`),
   CONSTRAINT `member_ibfk_6` FOREIGN KEY (`invalidity_status_id`) REFERENCES `invalidity_status` (`id`),
   CONSTRAINT `member_ibfk_7` FOREIGN KEY (`residence_id`) REFERENCES `residence` (`id`),
-  CONSTRAINT `member_ibfk_8` FOREIGN KEY (`invalidity_ranking_id`) REFERENCES `invalidity_ranking` (`id`)
+  CONSTRAINT `member_ibfk_8` FOREIGN KEY (`invalidity_ranking_id`) REFERENCES `invalidity_ranking` (`id`),
+  CONSTRAINT `member_ibfk_9` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -379,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-21 18:59:21
+-- Dump completed on 2018-05-21 19:14:18
