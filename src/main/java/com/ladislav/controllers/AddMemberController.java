@@ -5,6 +5,7 @@ import com.ladislav.model.member.Member;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +41,7 @@ public class AddMemberController implements Controller, Initializable {
   }
 
   @FXML
-  public void addMemberButton(ActionEvent actionEvent) {
+  public void addMemberButton(ActionEvent actionEvent) throws SQLException {
 
     //TODO gett all the data from elements
 

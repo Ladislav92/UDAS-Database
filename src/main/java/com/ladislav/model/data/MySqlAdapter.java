@@ -55,11 +55,11 @@ public class MySqlAdapter implements DataAdapter {
    * Changes certain data on existing member.
    *
    *
-   * @param member member object carrying changes
+   * @param id other member object carrying changes
    * @return False if member does not exist or change did not succeed.
    */
   @Override
-  public boolean updateMember(int id) {
+  public boolean updateMember(int id, Member other) {
     throw new NotImplementedException();
   }
 
@@ -73,7 +73,7 @@ public class MySqlAdapter implements DataAdapter {
    * @return
    */
   @Override
-  public List<Member> getMembers(Map<String, String> searchParameters) {
+  public List<Member> getMembers(Map<String, List<String>> searchParameters) {
     throw new NotImplementedException();
   }
 

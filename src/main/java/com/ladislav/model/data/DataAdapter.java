@@ -9,34 +9,33 @@ public interface DataAdapter {
 
   List<Member> getMembers() throws SQLException;
 
-  boolean addMember(Member member);
+  boolean addMember(Member member) throws SQLException;
 
   boolean deleteMember(Member member) throws SQLException;
 
-  boolean updateMember(int id);
+  boolean updateMember(int id, Member other) throws SQLException;
 
-  List<String> getCities();
+  List<String> getCities() throws SQLException;
 
-  List<String> getProvinces();
+  List<String> getProvinces() throws SQLException;
 
-  List<String> getEducationLevels();
+  List<String> getEducationLevels() throws SQLException;
 
-  List<String> getProfessions();
+  List<String> getProfessions() throws SQLException;
 
-  List<String> getInvalidityStatuses();
+  List<String> getInvalidityStatuses() throws SQLException;
 
-  List<String> getInvalidityCategories();
+  List<String> getInvalidityCategories() throws SQLException;
 
-  List<String> getInvalidityPercentage();
+  List<String> getInvalidityPercentage() throws SQLException;
 
-  List<String> getEmploymentStatuses();
+  List<String> getEmploymentStatuses() throws SQLException;
 
-  List<String> getInjuryCauses();
+  List<String> getInjuryCauses() throws SQLException;
 
-  List<String> getInjuryTypes();
+  List<String> getInjuryTypes() throws SQLException;
 
-  List<Member> getMembers(Map<String, String> searchParameters);
-
+  List<Member> getMembers(Map<String, List<String>> searchParameters) throws SQLException;
 
 
 }
