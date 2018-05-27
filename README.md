@@ -29,9 +29,7 @@ Simple and portable.
 and it is self contained so it will me easier to maintain it on their side.
 
 DB implementation is pretty simple. There is one "central" table member (clan) which is linked to few simple key-value tables 
-that are containing data as city, province, injury type, invalidity kategory, work status etc. 
-
-*Database names are currently on Serbian language, I will try to change it as soon as possible.
+that are containing data as city, province, injury type, invalidity category, work status etc. 
 
 ![ER Diagram](https://i.imgur.com/nNNRNdw.png "ER Diagram")
 
