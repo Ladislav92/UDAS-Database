@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -73,8 +74,11 @@ public class MySqlAdapter implements DataAdapter {
    * @return
    */
   @Override
-  public List<Member> getMembers(Map<String, List<String>> searchParameters) {
-    throw new NotImplementedException();
+  public List<Member> getMembers(Map<String, List<String>> searchParameters) throws SQLException {
+
+    return getMembers().stream()
+        .filter(m -> m.hasMatch(searchParameters))
+        .collect(Collectors.toList());
   }
 
   /**
