@@ -15,7 +15,7 @@ public interface DataAdapter {
 
   boolean updateMember(int id, Member other) throws SQLException;
 
-  List<String> getCities() throws SQLException;
+  Map<Integer, String> getCities() throws SQLException;
 
   List<String> getProvinces() throws SQLException;
 

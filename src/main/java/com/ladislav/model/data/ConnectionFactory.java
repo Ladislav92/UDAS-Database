@@ -9,7 +9,6 @@ public class ConnectionFactory {
   private static final String SQL_SERVER = "jdbc:mysql://localhost/udas?" +
       "user=root&password=qwerty&useSSL=false";
 
-
   /**
    * Get a connection to database, user must provide valid credentials - SQL Authentification is
    * used
@@ -21,13 +20,6 @@ public class ConnectionFactory {
 //    String connectionUrl = SQL_SERVER + SQL_USER + username + SQL_PASSWORD + password + ";";
     return DriverManager.getConnection(SQL_SERVER);
   }
-
-  /**
-   * Temporary method used for testing purposes
-   */
-//  public static Connection getConnection() throws SQLException {
-//    return getConnection(USER, PASS);
-//  }
 
   /**
    * Test Connection

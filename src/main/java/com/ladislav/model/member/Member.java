@@ -292,7 +292,6 @@ public class Member {
     return surname.get();
   }
 
-
   public boolean hasMatch(Map<String, List<String>> parameters) {
 
     if (parameters.get("name") != null) {

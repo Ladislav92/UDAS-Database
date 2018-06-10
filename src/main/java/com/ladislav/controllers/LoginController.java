@@ -1,6 +1,7 @@
 package com.ladislav.controllers;
 
 import com.ladislav.model.data.DataAdapter;
+import com.ladislav.model.data.HackAdapter;
 import com.ladislav.model.data.MySqlAdapter;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
@@ -55,12 +56,14 @@ public class LoginController implements Controller {
     String username = userNameText.getText();
     String password = passwordField.getText();
 
-    try {
-      dataAdapter = new MySqlAdapter(username, password);
-    } catch (SQLException e) {
-      // TODO print error dialog
-      e.printStackTrace();
-    }
+//    try {
+//    } catch (SQLException e) {
+//      dataAdapter = new HackAdapter(username, password);
+//      // TODO print error dialog
+//      e.printStackTrace();
+//    }
+
+    dataAdapter = new HackAdapter();
 
     try {
       SceneManager.changeScene(dataAdapter, stage, getClass().getResource("/view/navigation.fxml"), new NavigationController());

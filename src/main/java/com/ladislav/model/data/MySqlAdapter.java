@@ -7,14 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
- * Frankensteins monster to access the data from DB. Probably should be extracted to
- * server side app and act as web client.
+ * Frankensteins monster to access the data from DB. Probably should be extracted to server side app and act as web client.
  *
  * @author Ladislav
  */
@@ -31,7 +33,6 @@ public class MySqlAdapter implements DataAdapter {
    *
    * @param member to be inserted
    * @return True or false if member exists or insertion failed.
-   * @throws SQLException
    */
   @Override
   public boolean addMember(Member member) {
@@ -39,12 +40,10 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   *
    * Removes member from database based on membersID.
    *
    * @param member to be removed
    * @return true or false if member does not exist or removal was unsuccessful.
-   * @throws SQLException
    */
   @Override
   public boolean deleteMember(Member member) throws SQLException {
@@ -54,7 +53,6 @@ public class MySqlAdapter implements DataAdapter {
 
   /**
    * Changes certain data on existing member.
-   *
    *
    * @param id other member object carrying changes
    * @return False if member does not exist or change did not succeed.
@@ -71,7 +69,6 @@ public class MySqlAdapter implements DataAdapter {
    * Search parameters should contain attribute name as key and desired value as value in Map provided.
    *
    * @param searchParameters Map
-   * @return
    */
   @Override
   public List<Member> getMembers(Map<String, List<String>> searchParameters) throws SQLException {
@@ -82,10 +79,10 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   *  Returns list that contains all the members that database holds.
-   *  If there are no member entries in the DB, empty list is returned.
+   * Returns list that contains all the members that database holds. If there are no member entries in the DB, empty list is
+   * returned.
+   *
    * @return List of members.
-   * @throws SQLException
    */
   public List<Member> getMembers() throws SQLException {
 
@@ -131,22 +128,22 @@ public class MySqlAdapter implements DataAdapter {
 
       List<Injury> povrede = getInjuries(clanID);
 
-          members.add(
-              new Member(clanID, ime, prezime, JMBG, datum_rodjenja, tel, tel2, mjesto, mjesna_zajednica,
-                  ulica, broj_stana_kuce, clanoviDom, datum_smrti, stepen_obrazovanja, zanimanje, radni_status,
-                  nacin_povr,
-                  status_inv, stambeno_pitanje, pol, napomena, povrede));
+      members.add(
+          new Member(clanID, ime, prezime, JMBG, datum_rodjenja, tel, tel2, mjesto, mjesna_zajednica,
+              ulica, broj_stana_kuce, clanoviDom, datum_smrti, stepen_obrazovanja, zanimanje, radni_status,
+              nacin_povr,
+              status_inv, stambeno_pitanje, pol, napomena, povrede));
     }
 
     return members;
   }
 
   /**
-   * Helper method for getMembers. It exists to collect all the injuries member has.
-   * It's implemented separately because Injury table has Many-To-Many relationship.
+   * Helper method for getMembers. It exists to collect all the injuries member has. It's implemented separately because Injury
+   * table has Many-To-Many relationship.
+   *
    * @param id - members ID
    * @return List that contains Injury objects
-   * @throws SQLException
    */
   private List<Injury> getInjuries(int id) throws SQLException {
 
@@ -171,21 +168,33 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all cities database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to add new cities trough add/change member
-   * directly.
+   * Returns all cities database holds. It's used to populate comboboxes for inserting and changing members. User is not allowed
+   * to add new cities trough add/change member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getCities() {
-    throw new NotImplementedException();
+  public Map<Integer, String> getCities() throws SQLException {
+
+    Map<Integer, String> cities = new TreeMap<>();
+
+    ResultSet resultSet = executeQuery("\n"
+        + "SELECT * FROM city");
+
+    while (resultSet.next()) {
+
+      int cityID = resultSet.getInt("id");
+      String city = resultSet.getString("city");
+
+      cities.put(cityID, city);
+    }
+
+    return cities;
   }
 
   /**
-   * Returns all city provinces database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to change city entries trough add/change member
-   * directly.
+   * Returns all city provinces database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * allowed to change city entries trough add/change member directly.
    *
    * @return List or empty list.
    */
@@ -195,9 +204,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all education levels database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change member
-   * directly.
+   * Returns all education levels database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * allowed to make changes on this table trough add/change member directly.
    *
    * @return List or empty list.
    */
@@ -207,9 +215,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all professions database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change member
-   * directly.
+   * Returns all professions database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * allowed to make changes on this table trough add/change member directly.
    *
    * @return List or empty list.
    */
@@ -219,21 +226,19 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all invalidity statuses database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all invalidity statuses database holds. It's used to populate comboboxes for inserting and changing members. User is
+   * not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
- public List<String> getInvalidityStatuses() {
+  public List<String> getInvalidityStatuses() {
     throw new NotImplementedException();
   }
 
   /**
-   * Returns all invalidity categories database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all invalidity categories database holds. It's used to populate comboboxes for inserting and changing members. User
+   * is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
@@ -243,9 +248,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all invalidity percentage values that database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all invalidity percentage values that database holds. It's used to populate comboboxes for inserting and changing
+   * members. User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
@@ -255,9 +259,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all Employment status values that database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all Employment status values that database holds. It's used to populate comboboxes for inserting and changing
+   * members. User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
@@ -267,9 +270,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all injury causes values that database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all injury causes values that database holds. It's used to populate comboboxes for inserting and changing members.
+   * User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
@@ -279,9 +281,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all injury type values that database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all injury type values that database holds. It's used to populate comboboxes for inserting and changing members. User
+   * is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
@@ -297,10 +298,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   *
    * For testing purpose
-   *
-   * */
+   */
   public static void main(String[] args) throws SQLException {
 
     MySqlAdapter access = new MySqlAdapter("Lado", "lado");
