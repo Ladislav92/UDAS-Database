@@ -1,5 +1,8 @@
 # How to contribute?
 
+## First thing
+Please read the whole document before contributing
+
 ### What kind of help you can use ?
 
 Except the ideas for the project (wheather the features or design/implementation) 
@@ -34,6 +37,16 @@ Currently we are using MySQL db (switched from MSSQL for possible portability).
 Database issues are tagged with MySQL. If you are going to make changes on DB itself
 be sure to create [PATCH](https://lornajane.net/posts/2010/simple-database-patching-strategy) for it properly before making pull request.
 When update-ing database, you have to use patches iteratively.
+
+## That's how we branch
+
+When you pick up an issue and decide to solve a problem you should:
+
+Checkout develop branch.
+Make your new unique branch for issue you're solving.
+When finished, make pull request on develop branch.
+
+For more information on branching take a look on  [this link](https://nvie.com/posts/a-successful-git-branching-model/).
 
 ## If you do not understand something - ask !
 
