@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+  alignment="CENTER"
+  hgap="10.0"
+  maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="615.0"
+  vgap="10.0" fx:controller="ba.rs.udas.database.ui.controllers.AddMemberController">
+
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.39999389648438" minWidth="10.0"
+      prefWidth="43.99998168945312"/>
+
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.80001831054688" minWidth="10.0"
+      prefWidth="156.80001831054688"/>
+
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.79998779296878" minWidth="10.0"
+      prefWidth="145.59997558593753"/>
+
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.20001220703125" minWidth="10.0"
+      prefWidth="133.19997558593752"/>
+
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.79998779296875" minWidth="10.0"
+      prefWidth="38.79998779296875"/>
+
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0"
+      prefWidth="52.400012207031295"/>
+
+  </columnConstraints>
+
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+  </rowConstraints>
+
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="1" text="Ime"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="3" text="Prezime"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="5" text="jmbg"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="7" text="Datum rođenja"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="9" text="Telefon 1"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="11" text="Telefon 2"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="14" text="Mjesto"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="16" text="Mjesna zajednica"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="1" text="Broj stana/Kuće"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="3" text="Članovi domaćinstva"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="5" text="Datum smrti"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="7" text="Stepen Obrazovanja"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="9" text="Zanimanje"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="11" text="Radni status"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="16" text="Način povrede"/>
+  <Label GridPane.columnIndex="3" GridPane.rowIndex="5" text="Status invalidnosti"/>
+  <Label GridPane.columnIndex="2" GridPane.rowIndex="14" text="Stambeno pitanje"/>
+  <Label GridPane.columnIndex="3" GridPane.rowIndex="1" text="Invalidska kategorija"/>
+  <Label GridPane.columnIndex="3" GridPane.rowIndex="10" text="Povrede"/>
+  <Label GridPane.columnIndex="3" GridPane.rowIndex="14" text="Napomena"/>
+
+  <TableView GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="11"
+    GridPane.rowSpan="3" prefHeight="200.0" prefWidth="200.0">
+    <columns>
+      <TableColumn minWidth="0.0" prefWidth="0.0" text="C2"/>
+      <TableColumn prefWidth="75.0" text="C1" fx:id="injuriesTbl"/>
+    </columns>
+  </TableView>
+
+  <TextArea GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="16"
+    GridPane.rowSpan="2" prefHeight="200.0" prefWidth="200.0" fx:id="additionalInfoTxt"/>
+
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="nameTxt"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="surnameTxt"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="jmbgTxt"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" fx:id="firstPhoneTxt"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" fx:id="secondPhoneTxt"/>
+  <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="15" prefWidth="150.0" fx:id="cityCmb"/>
+
+  <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="17" prefWidth="150.0"
+    fx:id="provinceCmb"/>
+
+  <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="8" prefWidth="150.0"
+    fx:id="educationLevelCmb"/>
+
+  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="8" fx:id="dateOfBirth"/>
+  <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="6" fx:id="dateOfDeath"/>
+  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="houseNumberTxt"/>
+  <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" fx:id="peopleInHouseholdTxt"/>
+
+  <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="10" prefWidth="150.0"
+    fx:id="proffesionCmb"/>
+
+  <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="12" prefWidth="150.0"
+    fx:id="employmentStatusCmb"/>
+
+  <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="15" prefWidth="150.0"
+    fx:id="housingStatusCmb"/>
+
+  <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="17" prefWidth="150.0"
+    fx:id="injuryCauseCmb"/>
+
+  <ComboBox GridPane.columnIndex="3" GridPane.rowIndex="2" prefWidth="150.0"
+    fx:id="InvalidityCategoryCmb"/>
+
+  <HBox GridPane.columnIndex="3" GridPane.rowIndex="6" alignment="CENTER"
+    nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0">
+    <ComboBox prefWidth="150.0" fx:id="invalidityStatucCmb"/>
+  </HBox>
+
+  <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Procenat invalidnosti"/>
+  <ComboBox GridPane.columnIndex="3" GridPane.rowIndex="4" prefWidth="150.0"
+    fx:id="invalidityPercentageCmb"/>
+
+  <Label GridPane.columnIndex="3" GridPane.rowIndex="7" text="Pol"/>
+
+  <HBox GridPane.columnIndex="3" GridPane.rowIndex="8" alignment="CENTER"
+    nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+    <children>
+      <RadioButton mnemonicParsing="false" text="M" fx:id="sexMaleRb"/>
+      <RadioButton mnemonicParsing="false" text="Ž" fx:id="sexFemaleRb"/>
+    </children>
+  </HBox>
+
+  <Button GridPane.columnIndex="4" GridPane.rowIndex="19" mnemonicParsing="false"
+    onAction="#addMemberButton" text="OK" fx:id="okButton"/>
+
+  <Button GridPane.columnIndex="5" GridPane.rowIndex="19" mnemonicParsing="false"
+    onAction="#openMemberManagement" text="Otkaži" fx:id="cancelButton"/>
+
+</GridPane>

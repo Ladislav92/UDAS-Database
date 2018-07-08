@@ -1,0 +1,12 @@
+/* LoginController */
+.login-logo {
+  -fx-font-family: "Verdana";
+}
+
+.login-logo__top {
+ -fx-font-size: 48;
+}
+
+.login-logo__bottom {
+ -fx-font-size: 14;
+}
