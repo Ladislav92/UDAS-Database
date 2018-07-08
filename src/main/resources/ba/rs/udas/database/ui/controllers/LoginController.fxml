@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.NotificationPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-  prefHeight="480" prefWidth="640"
+  minHeight="480" minWidth="640"
   fx:controller="ba.rs.udas.database.ui.controllers.LoginController" fx:id="rootPane">
 
   <fx:define>

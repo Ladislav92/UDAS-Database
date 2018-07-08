@@ -3,7 +3,6 @@ package ba.rs.udas.database;
 import ba.rs.udas.database.ui.Loader;
 import ba.rs.udas.database.ui.controllers.LoginController;
 import javafx.application.Application;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -25,12 +24,8 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) {
-    //Locale.setDefault(new Locale("sr", "BA"));
-    Loader loader = Loader
-        .setInstance(stage, LoginController.class, Loader.getResourceBundle(LoginController.class));
-    stage.setScene(loader.getScene());
-    stage.getIcons()
-         .add(new Image(Main.class.getResourceAsStream("/assets/img/appicon_256px.png")));
-    stage.show();
+    Loader.setInstance(LoginController.class)
+          .getStage()
+          .show();
   }
 }

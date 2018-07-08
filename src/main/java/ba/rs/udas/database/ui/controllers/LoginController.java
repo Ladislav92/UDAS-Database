@@ -1,8 +1,7 @@
 package ba.rs.udas.database.ui.controllers;
 
-import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.ui.Loader;
-import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.concurrent.ForkJoinPool;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -46,15 +45,17 @@ public class LoginController implements Controller {
   }
 
   @Override
-  public void postInit(Loader loader) {
-    String title = Loader.getResourceBundle(this.getClass())
-                         .getString("scene_title");
+  public Stage prepareStage(ResourceBundle resourceBundle) {
+    Stage stage = Controller.super.prepareStage(resourceBundle);
 
-    Stage stage = loader.getStage();
-    stage.setTitle(title);
+    stage.setTitle(resourceBundle.getString("scene_title"));
     stage.setResizable(false);
+    return stage;
+  }
 
-    languageComboBox.getItems().addAll("en", "sr", "ср");
+  @Override
+  public void updateStage(final Stage activeStage, final ResourceBundle resourceBundle) {
+    activeStage.setTitle(resourceBundle.getString("scene_title"));
   }
 
   //TODO: develop further
@@ -84,11 +85,13 @@ public class LoginController implements Controller {
     String username = loginField.getText();
     String password = passwordField.getText();
 
-    try {
+    Loader.setInstance(NavigationController.class, true);
+
+    /*try {
       ConnectionManager.connect(username, password);
     } catch (SQLException e) {
       System.out.println(e); //TODO: proper logging
       showLoginErrorDialog(e.getMessage());
-    }
+    }*/
   }
 }
