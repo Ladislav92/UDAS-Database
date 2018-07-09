@@ -78,45 +78,45 @@ public class MySqlAdapter implements DataAdapter {
   public List<Member> getMembers() throws SQLException {
 
     String query =
-        " SELECT id_clan, ime, prezime, JMBG, datum_rodjenja, tel1, tel2, mjesto.mjesto,\n"
-            + "        mjesna_zajednica.mjesna_zajednica, ulica, broj_stana_kuce, clanovi_domacinstva, datum_smrti,\n"
-            + "        stepen_obrazovanja.stepen_obrazovanja, zanimanje.zanimanje, radni_status.radni_status, nacin_povrede.nacin_povrede,\n"
-            + "        status_invalidnosti.status_invalidnosti, stambeno_pitanje.stambeno_pitanje, pol, napomena\n"
-            + "    FROM clan\n"
-            + "    LEFT JOIN mjesto ON mjesto.id_mjesto = clan.id_clan\n"
-            + "    LEFT JOIN mjesna_zajednica ON mjesna_zajednica.id_mjesna_zajednica = clan.id_mjesna\n"
-            + "    LEFT JOIN stepen_obrazovanja ON stepen_obrazovanja.id_stepen_obrazovanja = clan.id_stepen_obr\n"
-            + "    LEFT JOIN zanimanje ON zanimanje.id_zanimanje = clan.id_zanimanje\n"
-            + "    LEFT JOIN radni_status ON radni_status.id_radni_status = clan.id_radni_status\n"
-            + "    LEFT JOIN nacin_povrede ON nacin_povrede.nacin_povrede = clan.id_nacin_povrd\n"
-            + "    LEFT JOIN status_invalidnosti ON status_invalidnosti.id_status_invalidnosti = clan.id_status_invalidnosti\n"
-            + "    LEFT JOIN stambeno_pitanje ON stambeno_pitanje.id_stambeno_pitanje = clan.id_stambeno_pitanje;";
+        " SELECT member.id, name, surname, ssn, birth_date, phone_number, phone_number_2, city.city,\n"
+            + "        city_province.city_province, street_name, home_number, household_members, death_date,\n"
+            + "        education_level.education_level, profession.profession, employment_status.employment_status, injury_cause.injury_cause,\n"
+            + "        invalidity_status.invalidity_status, residence.residence, sex, note\n"
+            + "    FROM member\n"
+            + "    LEFT JOIN city ON city.id = member.id\n"
+            + "    LEFT JOIN city_province ON city_province.id = member.city_province_id\n"
+            + "    LEFT JOIN education_level ON education_level.id = member.education_level_id\n"
+            + "    LEFT JOIN profession ON profession.id = member.profession_id\n"
+            + "    LEFT JOIN employment_status ON employment_status.id = member.employment_status_id\n"
+            + "    LEFT JOIN injury_cause ON injury_cause.id = member.injury_cause_id\n"
+            + "    LEFT JOIN invalidity_status ON invalidity_status.id = member.invalidity_status_id\n"
+            + "    LEFT JOIN residence ON residence.id = member.residence_id;";
 
     ResultSet resultSet = executeQuery(query);
     List<Member> members = new ArrayList<>();
     while (resultSet.next()) {
 
-      int clanID = resultSet.getInt("id_clan");
-      String ime = resultSet.getString("ime");
-      String prezime = resultSet.getString("prezime");
-      String JMBG = resultSet.getString("JMBG");
-      String datum_rodjenja = resultSet.getString("datum_rodjenja");
-      String tel = resultSet.getString("tel1");
-      String tel2 = resultSet.getString("tel2");
-      String mjesto = resultSet.getString("mjesto");
-      String mjesna_zajednica = resultSet.getString("mjesna_zajednica");
-      String ulica = resultSet.getString("ulica");
-      String broj_stana_kuce = resultSet.getString("broj_stana_kuce");
-      String clanoviDom = resultSet.getString("clanovi_domacinstva");
-      String datum_smrti = resultSet.getString("datum_smrti");
-      String stepen_obrazovanja = resultSet.getString("stepen_obrazovanja");
-      String zanimanje = resultSet.getString("zanimanje");
-      String radni_status = resultSet.getString("radni_status");
-      String nacin_povr = resultSet.getString("nacin_povrede");
-      String status_inv = resultSet.getString("status_invalidnosti");
-      String stambeno_pitanje = resultSet.getString("stambeno_pitanje");
-      String pol = resultSet.getString("pol");
-      String napomena = resultSet.getString("napomena");
+      int clanID = resultSet.getInt("id");
+      String ime = resultSet.getString("name");
+      String prezime = resultSet.getString("surname");
+      String JMBG = resultSet.getString("ssn");
+      String datum_rodjenja = resultSet.getString("birth_date");
+      String tel = resultSet.getString("phone_number");
+      String tel2 = resultSet.getString("phone_number_2");
+      String mjesto = resultSet.getString("city");
+      String mjesna_zajednica = resultSet.getString("city_province");
+      String ulica = resultSet.getString("street_name");
+      String broj_stana_kuce = resultSet.getString("home_number");
+      String clanoviDom = resultSet.getString("household_members");
+      String datum_smrti = resultSet.getString("death_date");
+      String stepen_obrazovanja = resultSet.getString("education_level");
+      String zanimanje = resultSet.getString("profession");
+      String radni_status = resultSet.getString("employment_status");
+      String nacin_povr = resultSet.getString("injury_cause");
+      String status_inv = resultSet.getString("invalidity_status");
+      String stambeno_pitanje = resultSet.getString("residence");
+      String pol = resultSet.getString("sex");
+      String napomena = resultSet.getString("note");
 
       List<Injury> povrede = getInjuries(clanID);
 
@@ -144,10 +144,10 @@ public class MySqlAdapter implements DataAdapter {
     List<Injury> injuries = new ArrayList<>();
 
     ResultSet resultSet = executeQuery("\n"
-        + "SELECT mjesto_povrede.mjesto_povrede, amputacija\n"
-        + "FROM povreda\n"
-        + "LEFT JOIN mjesto_povrede ON mjesto_povrede.id_mjesto_povrede = povreda.id_mjesto_povrede\n"
-        + "WHERE id_clan =" + id);
+        + "SELECT injury_location.injury_location, amputation\n"
+        + "FROM injury\n"
+        + "LEFT JOIN injury_location ON injury_location.id = injury.injury_location_id\n"
+        + "WHERE member_id =" + id);
 
     while (resultSet.next()) {
 
@@ -282,6 +282,19 @@ public class MySqlAdapter implements DataAdapter {
     Statement statement = connection.createStatement();
 
     return statement.executeQuery(query);
+  }
+
+  public static void main(String[] args) {
+
+
+    try {
+      ConnectionManager.connect("root", "qwerty");
+      ConnectionManager.getDataAdapter().getMembers().forEach(System.out::println);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
   }
 }
 
