@@ -110,24 +110,24 @@ public class Loader {
     return type.getSimpleName() + ".fxml";
   }
 
-  public <T extends Controller> T getController(Class<T> clazz) {
-    return clazz.cast(loader.getController());
-  }
-
-  public Object getRawController() {
-    return loader.getController();
-  }
-
-  public Node getRootNode() {
-    return rootNode;
+  public Stage getStage() {
+    return stage;
   }
 
   public Scene getScene() {
     return scene;
   }
 
-  public Stage getStage() {
-    return stage;
+  public Node getRootNode() {
+    return rootNode;
+  }
+
+  public <T extends Controller> T getController(Class<T> clazz) {
+    return clazz.cast(loader.getController());
+  }
+
+  public Object getRawController() {
+    return loader.getController();
   }
 
   private static class UTF8Control extends ResourceBundle.Control {
@@ -163,9 +163,12 @@ public class Loader {
     }
   }
 
-  public static class StaticResources {
+  public static final class StaticResources {
 
-    public static final Image APP_ICON = new Image(
-        Main.class.getResourceAsStream("/assets/img/appicon_256px.png"));
+    public static final Image APP_ICON =
+        new Image(Main.class.getResourceAsStream("/assets/img/appicon_256px.png"));
+
+    private StaticResources() {
+    }
   }
 }

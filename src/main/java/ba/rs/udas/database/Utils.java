@@ -2,7 +2,7 @@ package ba.rs.udas.database;
 
 public class Utils {
 
-  public static class Preconditions {
+  public static final class Preconditions {
 
     private Preconditions() {
     }
@@ -22,7 +22,7 @@ public class Utils {
     }
   }
 
-  public static class Formatting {
+  public static final class Formatting {
 
     private Formatting() {
     }

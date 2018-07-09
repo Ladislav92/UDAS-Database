@@ -278,11 +278,10 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   private ResultSet executeQuery(String query) throws SQLException {
-    Connection connection = ConnectionManager.getConnection()
-                                             .orElseThrow(SQLException::new);
+    Connection connection = ConnectionManager.getConnection().orElseThrow(SQLException::new);
     Statement statement = connection.createStatement();
-    return statement.executeQuery(query);
 
+    return statement.executeQuery(query);
   }
 }
 

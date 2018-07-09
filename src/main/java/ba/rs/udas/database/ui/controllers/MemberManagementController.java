@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  * Here happens most of the important stuff for an end user. Members can be searched, queried
@@ -25,37 +26,53 @@ public class MemberManagementController implements Controller, Initializable {
   private TableView<Member> membersTableView;
 
   @FXML
-  private TableColumn<Member, String> nameCol;
+  private TableColumn<Member, String> firstNameTableColumn;
 
   @FXML
-  private TableColumn<Member, String> surnameCol;
+  private TableColumn<Member, String> lastNameTableColumn;
 
   @FXML
-  private TableColumn<Member, String> cityCol;
+  private TableColumn<Member, String> cityTableColumn;
 
   @FXML
-  private TableColumn<Member, String> addressCol;
+  private TableColumn<Member, String> addressTableColumn;
 
   @FXML
-  private TableColumn<Member, String> phoneOneCol;
+  private TableColumn<Member, String> primaryPhoneTableColumn;
 
   @FXML
-  private TableColumn<Member, String> phoneTwoCol;
-
+  private TableColumn<Member, String> secondaryPhoneTableColumn;
 
   private DataAdapter dataAdapter;
 
+  @Override
+  public Stage prepareStage(ResourceBundle resourceBundle) {
+    Stage stage = Controller.super.prepareStage(resourceBundle);
+
+    stage.setTitle(resourceBundle.getString("scene_title"));
+    stage.setMinWidth(640);
+    stage.setMinHeight(480);
+    stage.setWidth(800);
+    stage.setHeight(600);
+
+    return stage;
+  }
+
+  @Override
+  public void updateStage(Stage activeStage, ResourceBundle resourceBundle) {
+
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     dataAdapter = ConnectionManager.getDataAdapter();
 
-    nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-    surnameCol.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
-    cityCol.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
-    addressCol.setCellValueFactory(cellData -> cellData.getValue().streetProperty());
-    phoneOneCol.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
-    phoneTwoCol.setCellValueFactory(cellData -> cellData.getValue().phoneNumber2Property());
+    firstNameTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    lastNameTableColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
+    cityTableColumn.setCellValueFactory(cellData -> cellData.getValue().cityProperty());
+    addressTableColumn.setCellValueFactory(cellData -> cellData.getValue().streetProperty());
+    primaryPhoneTableColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+    secondaryPhoneTableColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumber2Property());
     membersTableView.setEditable(false);
     displayAllMembers();
 
@@ -72,13 +89,12 @@ public class MemberManagementController implements Controller, Initializable {
   }
 
   @FXML
-  public void onSearchButtonClicked() {
+  private void onSearchButtonClicked() {
     //TODO Display members based on query ! ! !
-
-    displayAllMembers();
+    //displayAllMembers();
   }
 
-  public void displayAllMembers() {
+  private void displayAllMembers() {
     ObservableList<Member> memberObservableList = null;
 
     try {
@@ -92,16 +108,53 @@ public class MemberManagementController implements Controller, Initializable {
   }
 
   @FXML
-  public void openNewMemberDialog(ActionEvent actionEvent) {
-   /* try {
-      SceneManager.changeScene(
-          dataAdapter,
-          stage,
-          getClass().getResource("/ba/rs/udas/database/ui/controllers/add_member.fxml"),
-          new AddMemberController()
-      );
-    } catch (IOException e) {
-      e.printStackTrace();
-    }*/
+  private void openNewMemberDialog(ActionEvent actionEvent) {
+    System.out.println("openNewMemberDialog");
+  }
+
+  // Options menu
+
+  @FXML
+  private void onNewMemberMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onNewMemberMenuItemClicked");
+  }
+
+  @FXML
+  private void onSignOutMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onSignOutMenuItemClicked");
+  }
+
+  @FXML
+  private void onExitMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onExitMenuItemClicked");
+  }
+
+  // Search menu
+
+  @FXML
+  private void onSearchFiltersMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onSearchFiltersMenuItemClicked");
+  }
+
+  @FXML
+  private void onResetFiltersMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onResetFiltersMenuItemClicked");
+  }
+
+  @FXML
+  private void onFindMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onFindMenuItemClicked");
+  }
+
+  // Help menu
+
+  @FXML
+  private void onUserGuideMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onUserGuideMenuItemClicked");
+  }
+
+  @FXML
+  private void onAboutMenuItemClicked(ActionEvent actionEvent) {
+    System.out.println("onAboutMenuItemClicked");
   }
 }

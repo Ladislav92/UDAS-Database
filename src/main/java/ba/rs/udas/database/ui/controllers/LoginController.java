@@ -50,6 +50,7 @@ public class LoginController implements Controller {
 
     stage.setTitle(resourceBundle.getString("scene_title"));
     stage.setResizable(false);
+
     return stage;
   }
 
@@ -86,7 +87,6 @@ public class LoginController implements Controller {
     String password = passwordField.getText();
 
     Loader.setInstance(NavigationController.class, true);
-
     /*try {
       ConnectionManager.connect(username, password);
     } catch (SQLException e) {

@@ -31,7 +31,7 @@ public class NavigationController implements Controller {
           .getStage()
           .hide();
 
-    Loader.setInstance(MemberManagementController.class)
+    Loader.setInstance(MemberManagementController.class, false)
           .getStage()
           .show();
   }
