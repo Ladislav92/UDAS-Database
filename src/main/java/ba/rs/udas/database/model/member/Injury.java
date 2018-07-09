@@ -26,5 +26,4 @@ public class Injury {
   public void setAmputation(boolean amputation) {
     this.amputation = amputation;
   }
-
 }

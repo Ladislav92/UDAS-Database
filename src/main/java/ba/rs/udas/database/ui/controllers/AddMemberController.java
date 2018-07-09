@@ -58,8 +58,6 @@ public class AddMemberController implements Controller, Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
     //TODO add all data from DB to comboboxes
-
   }
 }

@@ -1,5 +1,6 @@
 package ba.rs.udas.database.ui.controllers;
 
+import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.model.database.DataAdapter;
 import ba.rs.udas.database.model.member.Member;
 import java.net.URL;
@@ -12,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 
 /**
  * Here happens most of the important stuff for an end user. Members can be searched, queried
@@ -45,15 +45,10 @@ public class MemberManagementController implements Controller, Initializable {
 
   private DataAdapter dataAdapter;
 
-  public void setStage(Stage stage) {
-  }
-
-  public void setDao(DataAdapter dataAdapter) {
-    this.dataAdapter = dataAdapter;
-  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    dataAdapter = ConnectionManager.getDataAdapter();
 
     nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
     surnameCol.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());

@@ -1,38 +1,48 @@
 package ba.rs.udas.database.ui.controllers;
 
-import ba.rs.udas.database.model.database.DataAdapter;
+import ba.rs.udas.database.model.database.ConnectionManager;
+import ba.rs.udas.database.ui.Loader;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class NavigationController implements Controller {
 
   @FXML
-  private Stage stage;
-
-  private DataAdapter dataAdapter;
-
+  private Button viewMembersButton;
 
   @FXML
-  public void onMembersBtnClicked(ActionEvent actionEvent) {
-   /* SceneManager
-        .changeScene
-            (
-                dataAdapter,
-                stage,
-                getClass().getResource("/ba/rs/udas/database/ui/controllers/member_management.fxml"),
-                new MemberManagementController()
-            );*/
+  private Button artSchoolButton;
+
+  @FXML
+  private Button logoutButton;
+
+  @Override
+  public void updateStage(final Stage activeStage, final ResourceBundle resourceBundle) {
+    activeStage.setTitle(resourceBundle.getString("scene_title"));
   }
 
-  public void onArtSchoolBtnClicked(ActionEvent actionEvent) {
+
+  public void onViewMembersButtonClicked(final ActionEvent actionEvent) {
+    Loader.getInstance(this.getClass())
+          .getStage()
+          .hide();
+
+    Loader.setInstance(MemberManagementController.class)
+          .getStage()
+          .show();
+  }
+
+  public void onArtSchoolButtonClicked(final ActionEvent actionEvent) {
     showFeatureUnavailableDialog();
   }
 
-  public void onLogoutBtnClicked(ActionEvent actionEvent) {
-   /* SceneManager
-        .changeScene(stage, getClass().getResource("/ba/rs/udas/database/ui/controllers/login.fxml"), new LoginController());*/
+  public void onLogoutButtonClicked(final ActionEvent actionEvent) {
+    ConnectionManager.disconnect();
+    Loader.setInstance(LoginController.class, true);
   }
 
   public void showFeatureUnavailableDialog() {
@@ -41,19 +51,5 @@ public class NavigationController implements Controller {
     alert.setHeaderText("Radovi u toku");
     alert.setContentText("Baza za školu crtanja i slikanja još nije implementirana");
     alert.showAndWait();
-  }
-
-  public void setStage(Stage stage) {
-    this.stage = stage;
-  }
-
-  public void setDao(DataAdapter dataAdapter) {
-    this.dataAdapter = dataAdapter;
-  }
-
-  public void addMemberButton(ActionEvent actionEvent) {
-  }
-
-  public void openMemberManagement(ActionEvent actionEvent) {
   }
 }

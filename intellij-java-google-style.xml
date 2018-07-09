@@ -117,6 +117,9 @@
     </case-options>
     <formatting-settings enabled="false"/>
   </DBN-PSQL>
+  <Properties>
+    <option name="SPACES_AROUND_KEY_VALUE_DELIMITER" value="true"/>
+  </Properties>
   <Python>
     <option name="USE_CONTINUATION_INDENT_FOR_ARGUMENTS" value="true"/>
   </Python>
@@ -257,6 +260,9 @@
       <option name="CONTINUATION_INDENT_SIZE" value="2"/>
       <option name="TAB_SIZE" value="2"/>
     </indentOptions>
+  </codeStyleSettings>
+  <codeStyleSettings language="Properties">
+    <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true"/>
   </codeStyleSettings>
   <codeStyleSettings language="Python">
     <option name="KEEP_BLANK_LINES_IN_CODE" value="1"/>

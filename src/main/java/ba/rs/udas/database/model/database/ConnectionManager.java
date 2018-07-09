@@ -11,7 +11,7 @@ public final class ConnectionManager {
       + "&useSSL=false&allowPublicKeyRetrieval=true";
 
   private static Connection connection = null;
-  private static DataAdapter dataAdapter = new MySqlAdapter();
+  private static DataAdapter dataAdapter = new HackAdapter();
 
   public static Optional<Connection> getConnection() {
     return Optional.ofNullable(connection);
@@ -29,7 +29,7 @@ public final class ConnectionManager {
     return connection;
   }
 
-  public static void close() {
+  public static void disconnect() {
     if (connection == null) {
       return;
     }

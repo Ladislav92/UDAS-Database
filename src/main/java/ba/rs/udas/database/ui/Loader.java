@@ -2,6 +2,7 @@ package ba.rs.udas.database.ui;
 
 import static ba.rs.udas.database.Utils.Preconditions.checkNotNull;
 
+import ba.rs.udas.database.Main;
 import ba.rs.udas.database.ui.controllers.Controller;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,62 +19,83 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Loader {
 
   private static Map<Class<? extends Controller>, Loader> loaders = new LinkedHashMap<>();
-  private Stage stage;
+  private static Stage activeStage;
+
   private FXMLLoader loader;
+
+  private Stage stage;
   private Scene scene;
-  private Node mainNode;
+  private Node rootNode;
 
-  private Loader(Stage stage, Class<? extends Controller> controller,
-                 ResourceBundle resourceBundle) {
-    this.stage = stage;
-
+  private Loader(Class<? extends Controller> controller, ResourceBundle resourceBundle, boolean keepStage) {
     loader = new FXMLLoader(getFXMLLocation(controller));
     loader.setResources(resourceBundle);
 
     try {
-      mainNode = loader.load();
-      scene = new Scene((Parent) mainNode);
+      rootNode = loader.load();
+      scene = new Scene((Parent) rootNode);
       scene.getStylesheets().add("/assets/style.css");
+
+      Controller controllerInstance = loader.getController();
+      if (!keepStage || activeStage == null) {
+        stage = controllerInstance.prepareStage(resourceBundle);
+        activeStage = stage;
+      } else {
+        stage = activeStage;
+        controllerInstance.updateStage(activeStage, resourceBundle);
+      }
+
+      stage.setScene(scene);
+
     } catch (IOException e) {
       System.out.println("Error: " + e); //TODO: logging
     }
   }
 
-  public static Loader setInstance(Stage stage, Class<? extends Controller> clazz) {
-    return setInstance(stage, clazz, null);
+  public static Loader getInstance(Class<? extends Controller> clazz) {
+    Loader loader = loaders.get(clazz);
+    if (loader == null) {
+      throw new IllegalStateException("No such loader.");
+    }
+
+    return loader;
   }
 
-  public static Loader setInstance(Stage stage, Class<? extends Controller> clazz,
-                                   ResourceBundle resourceBundle) {
-    Loader tmp = new Loader(stage, clazz, resourceBundle);
-    ((Controller) tmp.loader.getController()).postInit(tmp);
+  public static Loader setInstance(Class<? extends Controller> clazz) {
+    return setInstance(clazz, getResourceBundle(clazz, Locale.getDefault()), false);
+  }
+
+  public static Loader setInstance(Class<? extends Controller> clazz, boolean keepStage) {
+    return setInstance(clazz, getResourceBundle(clazz, Locale.getDefault()), keepStage);
+  }
+
+  public static Loader setInstance(Class<? extends Controller> clazz, Locale locale, boolean keepStage) {
+    return setInstance(clazz, getResourceBundle(clazz, locale), keepStage);
+  }
+
+  public static Loader setInstance(Class<? extends Controller> clazz, ResourceBundle resourceBundle,
+                                   boolean keepStage) {
+    Loader tmp = new Loader(clazz, resourceBundle, keepStage);
     loaders.put(clazz, tmp);
     return tmp;
   }
 
-  public static Loader getInstance(Class<? extends Controller> clazz) {
-    return loaders.get(clazz);
-  }
-
-  public static ResourceBundle getResourceBundle(Class<? extends Controller> type) {
-    return getResourceBundle(type, Locale.getDefault());
-  }
-
-  public static ResourceBundle getResourceBundle(Class<? extends Controller> type, Locale locale) {
-    checkNotNull(type, "type");
+  public static ResourceBundle getResourceBundle(Class<? extends Controller> clazz, Locale locale) {
+    checkNotNull(clazz, "clazz");
     checkNotNull(locale, "locale");
 
-    final String baseName = type.getPackage().getName() + "." + type.getSimpleName();
+    final String baseName = clazz.getPackage().getName() + "." + clazz.getSimpleName();
 
     ResourceBundle resourceBundle = null;
     try {
-      resourceBundle = ResourceBundle
-          .getBundle(baseName, locale, type.getClassLoader(), new UTF8Control());
+      resourceBundle =
+          ResourceBundle.getBundle(baseName, locale, clazz.getClassLoader(), new UTF8Control());
     } catch (MissingResourceException e) {
       System.out.println("Debug: " + e.getMessage()); //TODO: logging
     }
@@ -92,24 +114,20 @@ public class Loader {
     return clazz.cast(loader.getController());
   }
 
-  public Stage getStage() {
-    return stage;
+  public Object getRawController() {
+    return loader.getController();
   }
 
-  public void setStage(Stage stage) {
-    this.stage = stage;
+  public Node getRootNode() {
+    return rootNode;
   }
 
   public Scene getScene() {
     return scene;
   }
 
-  public Node getNode() {
-    return mainNode;
-  }
-
-  public Object getRawController() {
-    return loader.getController();
+  public Stage getStage() {
+    return stage;
   }
 
   private static class UTF8Control extends ResourceBundle.Control {
@@ -145,5 +163,9 @@ public class Loader {
     }
   }
 
+  public static class StaticResources {
 
+    public static final Image APP_ICON = new Image(
+        Main.class.getResourceAsStream("/assets/img/appicon_256px.png"));
+  }
 }
