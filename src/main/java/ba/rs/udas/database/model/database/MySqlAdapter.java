@@ -283,18 +283,5 @@ public class MySqlAdapter implements DataAdapter {
 
     return statement.executeQuery(query);
   }
-
-  public static void main(String[] args) {
-
-
-    try {
-      ConnectionManager.connect("root", "qwerty");
-      ConnectionManager.getDataAdapter().getMembers().forEach(System.out::println);
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-
-  }
 }
 

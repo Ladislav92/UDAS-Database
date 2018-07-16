@@ -1,7 +1,6 @@
 package ba.rs.udas.database.ui.controllers;
 
-import ba.rs.udas.database.ui.Loader;
-import java.util.ResourceBundle;
+import ba.rs.udas.database.SceneManager;
 import java.util.concurrent.ForkJoinPool;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -34,6 +33,14 @@ public class LoginController implements Controller {
   @FXML
   private ComboBox languageComboBox;
 
+  public static void setupStage(Stage stage) {
+    stage.setResizable(false);
+    stage.setMinWidth(640);
+    stage.setMinHeight(480);
+    stage.setWidth(640);
+    stage.setHeight(480);
+  }
+
   private void setUpBindings() {
     loginButton.disableProperty().bind(notificationPane.showingProperty());
   }
@@ -42,21 +49,6 @@ public class LoginController implements Controller {
   private void initialize() {
     setUpBindings();
     Platform.runLater(() -> loginField.getParent().requestFocus());
-  }
-
-  @Override
-  public Stage prepareStage(ResourceBundle resourceBundle) {
-    Stage stage = Controller.super.prepareStage(resourceBundle);
-
-    stage.setTitle(resourceBundle.getString("scene_title"));
-    stage.setResizable(false);
-
-    return stage;
-  }
-
-  @Override
-  public void updateStage(final Stage activeStage, final ResourceBundle resourceBundle) {
-    activeStage.setTitle(resourceBundle.getString("scene_title"));
   }
 
   //TODO: develop further
@@ -86,7 +78,7 @@ public class LoginController implements Controller {
     String username = loginField.getText();
     String password = passwordField.getText();
 
-    Loader.setInstance(NavigationController.class, true);
+    SceneManager.changeScene(NavigationController.class);
     /*try {
       ConnectionManager.connect(username, password);
     } catch (SQLException e) {
