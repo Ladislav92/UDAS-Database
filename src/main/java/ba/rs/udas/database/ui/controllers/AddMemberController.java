@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
 // TODO think of making new member dialog instead of scene
-public class AddMemberController implements Controller, Initializable {
+public final class AddMemberController implements Controller, Initializable {
 
   @FXML
   private Stage stage;

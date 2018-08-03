@@ -1,8 +1,8 @@
 package ba.rs.udas.database;
 
-import ba.rs.udas.database.SceneManager.StaticResources;
+import ba.rs.udas.database.ui.StageManager;
+import ba.rs.udas.database.ui.StageManager.StaticResources;
 import ba.rs.udas.database.ui.controllers.LoginController;
-import java.util.Locale;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -20,8 +20,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+  private static StageManager mainStageManager;
+
   public static void main(String[] args) {
     launch(args);
+  }
+
+  public static StageManager getMainStageManager() {
+    return mainStageManager;
   }
 
   @Override
@@ -29,10 +35,8 @@ public class Main extends Application {
     stage.getIcons().add(StaticResources.APP_ICON);
     stage.setResizable(false);
 
-    SceneManager.setStage(stage)
-                .setupStage(LoginController::setupStage)
-                .changeScene(LoginController.class, Locale.forLanguageTag("sr"))
-                .show();
-
+    mainStageManager = new StageManager(stage).setupStage(LoginController::setupStage)
+                                              .changeScene(LoginController.class)
+                                              .show();
   }
 }

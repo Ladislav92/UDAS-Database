@@ -1,13 +1,15 @@
-package ba.rs.udas.database;
+package ba.rs.udas.database.ui;
 
 import static ba.rs.udas.database.Utils.Preconditions.checkNotNull;
 
+import ba.rs.udas.database.Main;
 import ba.rs.udas.database.ui.controllers.Controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
@@ -18,82 +20,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public final class SceneManager {
+public final class StageManager {
 
-  private static final SceneManager instance = new SceneManager();
+  private final Stage stage;
 
-  private static Stage stage;
-
-  public static Stage getStage() {
-    checkStageThrowIfNull();
-    return stage;
-  }
-
-  public static SceneManager setStage(Stage stage) {
+  public StageManager(Stage stage) {
     checkNotNull(stage, "stage");
-    SceneManager.stage = stage;
-    return instance;
-  }
-
-  public static SceneManager setupStage(Consumer<Stage> stageSetupConsumer) {
-    checkStageThrowIfNull();
-
-    if (stageSetupConsumer != null) {
-      stageSetupConsumer.accept(stage);
-    }
-
-    return instance;
-  }
-
-  public static SceneManager hide() {
-    checkStageThrowIfNull();
-    stage.hide();
-    return instance;
-  }
-
-  public static SceneManager show() {
-    checkStageThrowIfNull();
-    stage.show();
-    return instance;
-  }
-
-  public static SceneManager changeScene(Scene scene) {
-    checkStageThrowIfNull();
-    stage.setScene(scene);
-    return instance;
-  }
-
-  public static SceneManager changeScene(Class<? extends Controller> clazz) {
-    return changeScene(clazz, getResourceBundle(clazz, Locale.getDefault()));
-  }
-
-  public static SceneManager changeScene(Class<? extends Controller> clazz, Locale locale) {
-    return changeScene(clazz, getResourceBundle(clazz, locale));
-  }
-
-  public static SceneManager changeScene(Class<? extends Controller> clazz, ResourceBundle bundle) {
-    checkNotNull(clazz, "clazz");
-    checkStageThrowIfNull();
-
-    FXMLLoader loader = new FXMLLoader(getFXMLLocation(clazz));
-    loader.setResources(bundle);
-
-    try {
-      Scene scene = new Scene(loader.load());
-      scene.getStylesheets().add("/assets/style.css");
-
-      if (bundle != null) {
-        stage.setTitle(bundle.getString("stage_title"));
-      }
-
-      stage.setScene(scene);
-
-    } catch (IOException e) {
-      //TODO: logging
-      System.out.println("Error loading scene graph for controller: " + clazz.getSimpleName() + "\n" + e);
-    }
-
-    return instance;
+    this.stage = stage;
   }
 
   public static ResourceBundle getResourceBundle(Class<? extends Controller> clazz, Locale locale) {
@@ -119,10 +52,65 @@ public final class SceneManager {
     return type.getSimpleName() + ".fxml";
   }
 
-  private static void checkStageThrowIfNull() {
-    if (SceneManager.stage == null) {
-      throw new IllegalStateException("Should set stage before using SceneManager");
+  public Stage getStage() {
+    return stage;
+  }
+
+  public StageManager setupStage(Consumer<Stage> setupConsumer) {
+    if (setupConsumer != null) {
+      setupConsumer.accept(stage);
     }
+
+    return this;
+  }
+
+  public StageManager hide() {
+    stage.hide();
+    return this;
+  }
+
+  public StageManager show() {
+    stage.show();
+    return this;
+  }
+
+  public StageManager changeScene(Class<? extends Controller> clazz) {
+    return changeScene(clazz, getResourceBundle(clazz, LanguageManager.getActiveLanguage().getLocale()));
+  }
+
+  public StageManager changeScene(Class<? extends Controller> clazz, Locale locale) {
+    return changeScene(clazz, getResourceBundle(clazz, locale));
+  }
+
+  public StageManager changeScene(Class<? extends Controller> clazz, ResourceBundle bundle) {
+    checkNotNull(clazz, "clazz");
+
+    FXMLLoader loader = new FXMLLoader(getFXMLLocation(clazz));
+    loader.setResources(bundle);
+
+    try {
+      Scene scene = new Scene(loader.load());
+      scene.setUserData(loader);
+      scene.getStylesheets().add("/assets/style.css");
+
+      if (bundle != null) {
+        stage.setTitle(bundle.getString("stage_title"));
+      }
+
+      stage.setScene(scene);
+
+    } catch (IOException e) {
+      //TODO: logging
+      System.out.println("Error loading scene graph for controller: " + clazz.getSimpleName() + "\n" + e);
+    }
+
+    return this;
+  }
+
+  public void reloadScene() {
+    FXMLLoader loader = (FXMLLoader) this.getStage().getScene().getUserData();
+    Class<? extends Controller> clazz = (Class<? extends Controller>) loader.getController().getClass();
+    this.changeScene(clazz, LanguageManager.getActiveLanguage().getLocale());
   }
 
   private static class UTF8Control extends ResourceBundle.Control {
@@ -149,7 +137,7 @@ public final class SceneManager {
       if (stream != null) {
         try {
           // Only this line is changed to make it to read properties files as UTF-8.
-          bundle = new PropertyResourceBundle(new InputStreamReader(stream, "UTF-8"));
+          bundle = new PropertyResourceBundle(new InputStreamReader(stream, StandardCharsets.UTF_8));
         } finally {
           stream.close();
         }

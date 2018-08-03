@@ -1,13 +1,17 @@
 package ba.rs.udas.database.ui.controllers;
 
-import ba.rs.udas.database.SceneManager;
+import ba.rs.udas.database.Main;
+import ba.rs.udas.database.ui.LanguageManager;
+import ba.rs.udas.database.ui.LanguageManager.Language;
 import java.util.concurrent.ForkJoinPool;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import org.controlsfx.control.NotificationPane;
 
@@ -16,7 +20,7 @@ import org.controlsfx.control.NotificationPane;
  * This part of app controls will user go further or not. If the login to server is successful - scene will be
  * switched to navigation and DataAdapter will be instantiated. If not dialog/message will pop up.
  */
-public class LoginController implements Controller {
+public final class LoginController implements Controller {
 
   @FXML
   private NotificationPane notificationPane;
@@ -31,7 +35,10 @@ public class LoginController implements Controller {
   private Button loginButton;
 
   @FXML
-  private ComboBox languageComboBox;
+  private Button popupButton; //temp
+
+  @FXML
+  private ComboBox<Language> languageComboBox;
 
   public static void setupStage(Stage stage) {
     stage.setResizable(false);
@@ -45,9 +52,23 @@ public class LoginController implements Controller {
     loginButton.disableProperty().bind(notificationPane.showingProperty());
   }
 
+  private void setUpLanguageComboBox() {
+    languageComboBox.getItems().addAll(Language.values());
+    languageComboBox.setConverter(new Language.LanguageToStringConverter());
+    languageComboBox.getSelectionModel().select(LanguageManager.getActiveLanguage());
+  }
+
+  @FXML
+  private void onLanguageComboBoxAction(ActionEvent actionEvent) {
+    LanguageManager
+        .changeLanguage(languageComboBox.getSelectionModel().getSelectedItem(), Main.getMainStageManager());
+  }
+
   @FXML
   private void initialize() {
     setUpBindings();
+    setUpLanguageComboBox();
+
     Platform.runLater(() -> loginField.getParent().requestFocus());
   }
 
@@ -78,12 +99,18 @@ public class LoginController implements Controller {
     String username = loginField.getText();
     String password = passwordField.getText();
 
-    SceneManager.changeScene(NavigationController.class);
+    Main.getMainStageManager().changeScene(NavigationController.class);
     /*try {
       ConnectionManager.connect(username, password);
     } catch (SQLException e) {
       System.out.println(e); //TODO: proper logging
       showLoginErrorDialog(e.getMessage());
     }*/
+  }
+
+  @FXML
+  private void onPopupButtonClicked(ActionEvent actionEvent) {
+
+    Popup popup = new Popup();
   }
 }

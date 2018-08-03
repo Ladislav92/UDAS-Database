@@ -1,6 +1,6 @@
 package ba.rs.udas.database.ui.controllers;
 
-import ba.rs.udas.database.SceneManager;
+import ba.rs.udas.database.Main;
 import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.model.database.DataAdapter;
 import ba.rs.udas.database.model.member.Member;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  * added/updated/deleted.
  */
 
-public class MemberManagementController implements Controller, Initializable {
+public final class MemberManagementController implements Controller, Initializable {
 
   @FXML
   private TableView<Member> membersTableView;
@@ -113,7 +113,9 @@ public class MemberManagementController implements Controller, Initializable {
   @FXML
   private void onSignOutMenuItemClicked(ActionEvent actionEvent) {
     ConnectionManager.disconnect();
-    SceneManager.changeScene(LoginController.class).setupStage(LoginController::setupStage);
+    Main.getMainStageManager()
+        .changeScene(LoginController.class)
+        .setupStage(LoginController::setupStage);
   }
 
   // Search menu

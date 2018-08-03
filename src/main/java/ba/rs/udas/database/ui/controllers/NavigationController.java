@@ -1,13 +1,13 @@
 package ba.rs.udas.database.ui.controllers;
 
-import ba.rs.udas.database.SceneManager;
+import ba.rs.udas.database.Main;
 import ba.rs.udas.database.model.database.ConnectionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
-public class NavigationController implements Controller {
+public final class NavigationController implements Controller {
 
   @FXML
   private Button viewMembersButton;
@@ -19,8 +19,9 @@ public class NavigationController implements Controller {
   private Button logoutButton;
 
   public void onViewMembersButtonClicked(final ActionEvent actionEvent) {
-    SceneManager.changeScene(MemberManagementController.class)
-                .setupStage(MemberManagementController::setupStage);
+    Main.getMainStageManager()
+        .changeScene(MemberManagementController.class)
+        .setupStage(MemberManagementController::setupStage);
   }
 
   public void onArtSchoolButtonClicked(final ActionEvent actionEvent) {
@@ -29,8 +30,9 @@ public class NavigationController implements Controller {
 
   public void onLogoutButtonClicked(final ActionEvent actionEvent) {
     ConnectionManager.disconnect();
-    SceneManager.changeScene(LoginController.class)
-                .setupStage(LoginController::setupStage);
+    Main.getMainStageManager()
+        .changeScene(LoginController.class)
+        .setupStage(LoginController::setupStage);
   }
 
   public void showFeatureUnavailableDialog() {

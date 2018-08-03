@@ -8,7 +8,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -41,12 +40,11 @@
         <Label styleClass="login-logo, login-logo__bottom" text="%databaseLabel_text"/>
       </VBox>
 
-      <!--temporary text values-->
-      <TextField promptText="%loginField_promptText" text="udas" fx:id="loginField"/>
-      <PasswordField promptText="%passwordField_promptText" text="udas" fx:id="passwordField"/>
+      <TextField promptText="%loginField_promptText" fx:id="loginField"/>
+      <PasswordField promptText="%passwordField_promptText" fx:id="passwordField"/>
 
       <HBox alignment="CENTER_LEFT">
-        <Button GridPane.rowIndex="3" onAction="#onLoginButtonClicked" text="%loginButton_text" fx:id="loginButton"/>
+        <Button onAction="#onLoginButtonClicked" text="%loginButton_text" fx:id="loginButton"/>
       </HBox>
     </VBox>
   </center>
@@ -57,7 +55,7 @@
         <Insets bottom="20" right="25"/>
       </BorderPane.margin>
 
-      <ComboBox prefWidth="50" fx:id="languageComboBox"/>
+      <ComboBox onAction="#onLanguageComboBoxAction" prefWidth="100" fx:id="languageComboBox"/>
     </HBox>
   </bottom>
 </BorderPane>
