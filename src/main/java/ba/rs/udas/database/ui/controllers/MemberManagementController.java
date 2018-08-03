@@ -1,5 +1,6 @@
 package ba.rs.udas.database.ui.controllers;
 
+import ba.rs.udas.database.Main;
 import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.model.database.DataAdapter;
 import ba.rs.udas.database.model.member.Member;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
  * added/updated/deleted.
  */
 
-public class MemberManagementController implements Controller, Initializable {
+public final class MemberManagementController implements Controller, Initializable {
 
   @FXML
   private TableView<Member> membersTableView;
@@ -45,22 +46,12 @@ public class MemberManagementController implements Controller, Initializable {
 
   private DataAdapter dataAdapter;
 
-  @Override
-  public Stage prepareStage(ResourceBundle resourceBundle) {
-    Stage stage = Controller.super.prepareStage(resourceBundle);
-
-    stage.setTitle(resourceBundle.getString("scene_title"));
+  public static void setupStage(Stage stage) {
+    stage.setResizable(true);
     stage.setMinWidth(640);
     stage.setMinHeight(480);
     stage.setWidth(800);
     stage.setHeight(600);
-
-    return stage;
-  }
-
-  @Override
-  public void updateStage(Stage activeStage, ResourceBundle resourceBundle) {
-
   }
 
   @Override
@@ -107,12 +98,12 @@ public class MemberManagementController implements Controller, Initializable {
     membersTableView.setItems(memberObservableList);
   }
 
+  // Options menu
+
   @FXML
   private void openNewMemberDialog(ActionEvent actionEvent) {
     System.out.println("openNewMemberDialog");
   }
-
-  // Options menu
 
   @FXML
   private void onNewMemberMenuItemClicked(ActionEvent actionEvent) {
@@ -121,15 +112,18 @@ public class MemberManagementController implements Controller, Initializable {
 
   @FXML
   private void onSignOutMenuItemClicked(ActionEvent actionEvent) {
-    System.out.println("onSignOutMenuItemClicked");
+    ConnectionManager.disconnect();
+    Main.getMainStageManager()
+        .changeScene(LoginController.class)
+        .setupStage(LoginController::setupStage);
   }
+
+  // Search menu
 
   @FXML
   private void onExitMenuItemClicked(ActionEvent actionEvent) {
     System.out.println("onExitMenuItemClicked");
   }
-
-  // Search menu
 
   @FXML
   private void onSearchFiltersMenuItemClicked(ActionEvent actionEvent) {
@@ -141,12 +135,12 @@ public class MemberManagementController implements Controller, Initializable {
     System.out.println("onResetFiltersMenuItemClicked");
   }
 
+  // Help menu
+
   @FXML
   private void onFindMenuItemClicked(ActionEvent actionEvent) {
     System.out.println("onFindMenuItemClicked");
   }
-
-  // Help menu
 
   @FXML
   private void onUserGuideMenuItemClicked(ActionEvent actionEvent) {

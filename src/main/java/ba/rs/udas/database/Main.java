@@ -1,6 +1,7 @@
 package ba.rs.udas.database;
 
-import ba.rs.udas.database.ui.Loader;
+import ba.rs.udas.database.ui.StageManager;
+import ba.rs.udas.database.ui.StageManager.StaticResources;
 import ba.rs.udas.database.ui.controllers.LoginController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,16 +17,26 @@ import javafx.stage.Stage;
  * Although this class is entry point of application, LoginController does important job - initializes
  * DataAdapter object if login is successful.
  */
+
 public class Main extends Application {
+
+  private static StageManager mainStageManager;
 
   public static void main(String[] args) {
     launch(args);
   }
 
+  public static StageManager getMainStageManager() {
+    return mainStageManager;
+  }
+
   @Override
   public void start(Stage stage) {
-    Loader.setInstance(LoginController.class)
-          .getStage()
-          .show();
+    stage.getIcons().add(StaticResources.APP_ICON);
+    stage.setResizable(false);
+
+    mainStageManager = new StageManager(stage).setupStage(LoginController::setupStage)
+                                              .changeScene(LoginController.class)
+                                              .show();
   }
 }
