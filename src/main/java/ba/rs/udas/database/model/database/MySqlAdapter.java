@@ -294,7 +294,7 @@ public class MySqlAdapter implements DataAdapter {
    */
   @Override
   public List<String> getInvalidityPercentages() throws SQLException {
-    if (invalidityCategories == null || invalidityCategories.isEmpty()) {
+    if (invalidityPercentages == null || invalidityPercentages.isEmpty()) {
       invalidityPercentages = getKeyValueData("invalidity_ranking", "invalidity_percentage");
     }
 
