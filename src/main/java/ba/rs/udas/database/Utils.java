@@ -1,5 +1,10 @@
 package ba.rs.udas.database;
 
+import static ba.rs.udas.database.Utils.Preconditions.checkNotNull;
+
+import java.lang.reflect.Field;
+import java.util.Optional;
+
 public class Utils {
 
   public static final class Preconditions {
@@ -19,6 +24,33 @@ public class Utils {
         throw new NullPointerException(Utils.Formatting.formatString(errorMessageTemplate, args));
       }
       return reference;
+    }
+  }
+
+  public static final class Reflections {
+
+    private Reflections() {
+    }
+
+    public static <T> Optional<T> getField(Class<?> objectType, Class<T> fieldType,
+                                           String fieldName, Object targetInstance) {
+      checkNotNull(objectType, "objectType");
+      checkNotNull(fieldType, "fieldType");
+      checkNotNull(fieldName, "fieldName");
+      checkNotNull(targetInstance, "targetInstance");
+
+      T value;
+
+      try {
+        Field field = objectType.getDeclaredField(fieldName);
+        field.setAccessible(true);
+        value = (T) field.get(targetInstance);
+
+      } catch (NoSuchFieldException | IllegalAccessException e) {
+        return Optional.empty();
+      }
+
+      return Optional.of(value);
     }
   }
 
