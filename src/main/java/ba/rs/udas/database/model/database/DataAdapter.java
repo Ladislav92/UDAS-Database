@@ -15,7 +15,7 @@ public interface DataAdapter {
 
   boolean updateMember(int id, Member other) throws SQLException;
 
-  Map<Integer, String> getCities() throws SQLException;
+  List<String> getCities() throws SQLException;
 
   List<String> getProvinces() throws SQLException;
 
@@ -27,13 +27,15 @@ public interface DataAdapter {
 
   List<String> getInvalidityCategories() throws SQLException;
 
-  List<String> getInvalidityPercentage() throws SQLException;
+  List<String> getInvalidityPercentages() throws SQLException;
 
   List<String> getEmploymentStatuses() throws SQLException;
 
   List<String> getInjuryCauses() throws SQLException;
 
-  List<String> getInjuryTypes() throws SQLException;
+  List<String> getInjuryLocations() throws SQLException;
+
+  List<String> getResidences() throws SQLException;
 
   List<Member> getMembers(Map<String, List<String>> searchParameters) throws SQLException;
 }
