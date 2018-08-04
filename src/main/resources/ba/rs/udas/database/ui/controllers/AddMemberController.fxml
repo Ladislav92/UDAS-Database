@@ -90,62 +90,62 @@
     GridPane.rowSpan="3" prefHeight="200.0" prefWidth="200.0">
     <columns>
       <TableColumn minWidth="0.0" prefWidth="0.0" text="C2"/>
-      <TableColumn prefWidth="75.0" text="C1" fx:id="injuriesTbl"/>
+      <TableColumn prefWidth="75.0" text="C1" fx:id="injuriesTableColumn"/>
     </columns>
   </TableView>
 
   <TextArea GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="16"
-    GridPane.rowSpan="2" prefHeight="200.0" prefWidth="200.0" fx:id="additionalInfoTxt"/>
+    GridPane.rowSpan="2" prefHeight="200.0" prefWidth="200.0" fx:id="noteTextArea"/>
 
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="nameTxt"/>
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="surnameTxt"/>
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="jmbgTxt"/>
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" fx:id="firstPhoneTxt"/>
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" fx:id="secondPhoneTxt"/>
-  <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="15" prefWidth="150.0" fx:id="cityCmb"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="nameTextField"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="surnameTextField"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="ssnTextField"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" fx:id="firstPhoneTextField"/>
+  <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" fx:id="secondPhoneTextField"/>
+  <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="15" prefWidth="150.0" fx:id="cityComboBox"/>
 
   <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="17" prefWidth="150.0"
-    fx:id="provinceCmb"/>
+    fx:id="cityProvinceComboBox"/>
 
   <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="8" prefWidth="150.0"
-    fx:id="educationLevelCmb"/>
+    fx:id="educationLevelComboBox"/>
 
-  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="8" fx:id="dateOfBirth"/>
-  <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="6" fx:id="dateOfDeath"/>
-  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="houseNumberTxt"/>
-  <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" fx:id="peopleInHouseholdTxt"/>
+  <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="8" fx:id="dateOfBirthDatePicker"/>
+  <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="6" fx:id="dateOfDeathDatePicker"/>
+  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="homeNumberTextField"/>
+  <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" fx:id="householdPeopleTextField"/>
 
   <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="10" prefWidth="150.0"
-    fx:id="proffesionCmb"/>
+    fx:id="professionComboBox"/>
 
   <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="12" prefWidth="150.0"
-    fx:id="employmentStatusCmb"/>
+    fx:id="employmentStatusComboBox"/>
 
   <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="15" prefWidth="150.0"
-    fx:id="housingStatusCmb"/>
+    fx:id="residenceComboBox"/>
 
   <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="17" prefWidth="150.0"
-    fx:id="injuryCauseCmb"/>
+    fx:id="injuryCauseComboBox"/>
 
   <ComboBox GridPane.columnIndex="3" GridPane.rowIndex="2" prefWidth="150.0"
-    fx:id="InvalidityCategoryCmb"/>
+    fx:id="invalidityCategoryComboBox"/>
 
   <HBox GridPane.columnIndex="3" GridPane.rowIndex="6" alignment="CENTER"
     nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0">
-    <ComboBox prefWidth="150.0" fx:id="invalidityStatucCmb"/>
+    <ComboBox prefWidth="150.0" fx:id="invalidityStatusComboBox"/>
   </HBox>
 
   <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Procenat invalidnosti"/>
   <ComboBox GridPane.columnIndex="3" GridPane.rowIndex="4" prefWidth="150.0"
-    fx:id="invalidityPercentageCmb"/>
+    fx:id="invalidityPercentageComboBox"/>
 
   <Label GridPane.columnIndex="3" GridPane.rowIndex="7" text="Pol"/>
 
   <HBox GridPane.columnIndex="3" GridPane.rowIndex="8" alignment="CENTER"
     nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
     <children>
-      <RadioButton mnemonicParsing="false" text="M" fx:id="sexMaleRb"/>
-      <RadioButton mnemonicParsing="false" text="Ž" fx:id="sexFemaleRb"/>
+      <RadioButton mnemonicParsing="false" text="M" fx:id="sexMaleRadioButton" selected="true"/>
+      <RadioButton mnemonicParsing="false" text="Ž" fx:id="sexFemaleRadioButton"/>
     </children>
   </HBox>
 
