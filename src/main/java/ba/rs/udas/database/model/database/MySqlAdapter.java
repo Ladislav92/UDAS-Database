@@ -180,11 +180,11 @@ public class MySqlAdapter implements DataAdapter {
 
     while (resultSet.next()) {
 
-      String povreda = resultSet.getString("mjesto_povrede");
-      boolean amputacija = resultSet.getBoolean("amputacija");
+      String injuryLocation = resultSet.getString("injury_location");
+      boolean amputation = resultSet.getBoolean("amputation");
       int injuryID = resultSet.getInt("id");
 
-      injuries.add(new Injury(injuryID, povreda, amputacija));
+      injuries.add(new Injury(injuryID, injuryLocation, amputation));
 
     }
 
@@ -194,7 +194,6 @@ public class MySqlAdapter implements DataAdapter {
   private Map<String, Integer> getKeyValueData(String table) throws SQLException {
     return getKeyValueData(table, table);
   }
-
 
   /**
    * Returns all cities database holds. It's used to populate comboboxes for inserting and changing members. User is not allowed
@@ -359,6 +358,65 @@ public class MySqlAdapter implements DataAdapter {
       residences = getKeyValueData("residence");
     }
     return new ArrayList<>(residences.keySet());
+  }
+
+  public int insertCity(String city) throws SQLException {
+    String query = "INSERT INTO city (city) values ( " + city + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertCityProvince(String cityProvince, String city) throws SQLException {
+    String query = "INSERT INTO city_province (city_id, city_province) "
+        + "values (" + cities.get(city) + ", ' " + cityProvince + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertEducationLevel(String educationLevel) throws SQLException {
+    String query = "INSERT INTO education_level (education_level) "
+        + "values (' " + educationLevel + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertEmploymentStatus(String employmentStatus) throws SQLException {
+    String query = "INSERT INTO employmentStatus (employmentStatus) "
+        + "values (' " + employmentStatus + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertInjuryCause(String injuryCause) throws SQLException {
+    String query = "INSERT INTO injury_cause (injury_cause) "
+        + "values (' " + injuryCause + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertInjuryLocation(String injuryLocation) throws SQLException {
+    String query = "INSERT INTO injury_location (injury_location) "
+        + "values (' " + injuryLocation + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertInvalidityRanking(int invalidityCategory, int invalidityPercentage) throws SQLException {
+    String query = "INSERT INTO invalidity_ranking (invalidity_category, invalidity_percentage) "
+        + "values (" + invalidityCategory + "," + invalidityPercentage + ");";
+    return executeUpdate(query);
+  }
+
+  public int insertInvalidityStatus(String invalidityStatus) throws SQLException {
+    String query = "INSERT INTO invalidity_status (invalidity_status) "
+        + "values (' " + invalidityStatus + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertProfession(String profession) throws SQLException {
+    String query = "INSERT INTO profession (profession) "
+        + "values (' " + profession + "');";
+    return executeUpdate(query);
+  }
+
+  public int insertResidence(String residence) throws SQLException {
+    String query = "INSERT INTO profession (profession) "
+        + "values (' " + residence + "');";
+    return executeUpdate(query);
   }
 
   private ResultSet executeQuery(String query) throws SQLException {
