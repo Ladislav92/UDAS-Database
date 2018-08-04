@@ -2,12 +2,14 @@ package ba.rs.udas.database.model.member;
 
 public class Injury {
 
+  private int id;
   private String injury;
   private boolean amputation;
 
-  public Injury(String povreda, boolean amputacija) {
-    this.injury = povreda;
-    this.amputation = amputacija;
+  public Injury( int id, String injury, boolean amputation) {
+    this.id = id;
+    this.injury = injury;
+    this.amputation = amputation;
   }
 
 

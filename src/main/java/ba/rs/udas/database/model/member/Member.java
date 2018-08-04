@@ -6,46 +6,68 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 
-// TODO Builder pattern in member class?
-
 public class Member {
+
+  private int memberID;
 
   private SimpleStringProperty name;
   private SimpleStringProperty surname;
   private SimpleStringProperty ssn;
-
   private SimpleStringProperty cityProvince;
   private SimpleStringProperty street;
   private SimpleStringProperty homeNumber;
   private SimpleStringProperty householdMembers;
   private SimpleStringProperty sex;
-  private SimpleStringProperty comments;
-  private int memberID;
-
-  //TODO use date objects ?!?!
-  private SimpleStringProperty birthDate;
-  private SimpleStringProperty deathDate;
+  private SimpleStringProperty note;
+  private SimpleStringProperty birthDate; //TODO use date object ?!?!
+  private SimpleStringProperty deathDate; //TODO use date object ?!?!
   private SimpleStringProperty city;
   private SimpleStringProperty phoneNumber;
   private SimpleStringProperty phoneNumber2;
   private SimpleStringProperty employmentStatus;
   private SimpleStringProperty educationLevel;
-  private SimpleStringProperty proffesion;
+  private SimpleStringProperty profession;
   private SimpleStringProperty residence;
   private SimpleStringProperty maritialStatus;
   private SimpleStringProperty invalidityStatus;
-  //TODO add new table to database and implement it in here and in Access object ! (Ladislav)
-  private int invalidityLevel;
-  private int invalidityDegree;
+  private int invalidityCategory;
+  private int invalidityPercentage;
   private SimpleStringProperty injuryCause;
   private List<Injury> injuries;
 
+  public Member(Builder builder) {
+    this.memberID = builder.memberID;
+    this.name = builder.name;
+    this.surname = builder.surname;
+    this.ssn = builder.ssn;
+    this.birthDate = builder.birthDate;
+    this.phoneNumber = builder.phoneNumber;
+    this.phoneNumber2 = builder.phoneNumber2;
+    this.city = builder.city;
+    this.cityProvince = builder.cityProvince;
+    this.street = builder.street;
+    this.homeNumber = builder.homeNumber;
+    this.householdMembers = builder.householdMembers;
+    this.deathDate = builder.deathDate;
+    this.educationLevel = builder.educationLevel;
+    this.profession = builder.profession;
+    this.employmentStatus = builder.employmentStatus;
+    this.injuryCause = builder.injuryCause;
+    this.invalidityStatus = builder.invalidityStatus;
+    this.residence = builder.residence;
+    this.sex = builder.sex;
+    this.note = builder.note;
+    this.injuries = builder.injuries;
+    this.invalidityCategory = builder.invalidityCategory;
+    this.invalidityPercentage = builder.invalidityPercentage;
+  }
+
   public Member(int memberID, String name, String surname,
-                String SSN, String dateOfBirth, String phoneNumber1, String phoneNumber2,
-                String city, String cityProvince, String street, String homeNumber, String peopleInHousehold,
-                String dateOfDeath, String educationLevel, String profession,
-                String workStatus, String injuryCause, String invalidityStatus,
-                String housingQuestion, String sex, String comments, List<Injury> injuries) {
+      String SSN, String dateOfBirth, String phoneNumber1, String phoneNumber2,
+      String city, String cityProvince, String street, String homeNumber, String peopleInHousehold,
+      String dateOfDeath, String educationLevel, String profession,
+      String workStatus, String injuryCause, String invalidityStatus,
+      String housingQuestion, String sex, String note, List<Injury> injuries) {
 
     this.memberID = memberID;
     this.name = new SimpleStringProperty(name);
@@ -61,13 +83,13 @@ public class Member {
     this.householdMembers = new SimpleStringProperty(peopleInHousehold);
     this.deathDate = new SimpleStringProperty(dateOfDeath);
     this.educationLevel = new SimpleStringProperty(educationLevel);
-    this.proffesion = new SimpleStringProperty(profession);
+    this.profession = new SimpleStringProperty(profession);
     this.employmentStatus = new SimpleStringProperty(workStatus);
     this.injuryCause = new SimpleStringProperty(injuryCause);
     this.invalidityStatus = new SimpleStringProperty(invalidityStatus);
     this.residence = new SimpleStringProperty(housingQuestion);
     this.sex = new SimpleStringProperty(sex);
-    this.comments = new SimpleStringProperty(comments);
+    this.note = new SimpleStringProperty(note);
     this.injuries = injuries;
   }
 
@@ -131,12 +153,12 @@ public class Member {
     return sex;
   }
 
-  public String getComments() {
-    return comments.get();
+  public String getNote() {
+    return note.get();
   }
 
-  public SimpleStringProperty commentsProperty() {
-    return comments;
+  public SimpleStringProperty noteProperty() {
+    return note;
   }
 
   public String getBirthDate() {
@@ -187,12 +209,12 @@ public class Member {
     return educationLevel;
   }
 
-  public String getProffesion() {
-    return proffesion.get();
+  public String getProfession() {
+    return profession.get();
   }
 
-  public SimpleStringProperty proffesionProperty() {
-    return proffesion;
+  public SimpleStringProperty professionProperty() {
+    return profession;
   }
 
   public String getResidence() {
@@ -219,12 +241,12 @@ public class Member {
     return invalidityStatus;
   }
 
-  public int getInvalidityLevel() {
-    return invalidityLevel;
+  public int getInvalidityCategory() {
+    return invalidityCategory;
   }
 
-  public int getInvalidityDegree() {
-    return invalidityDegree;
+  public int getInvalidityPercentage() {
+    return invalidityPercentage;
   }
 
   public String getInjuryCause() {
@@ -243,7 +265,6 @@ public class Member {
     return memberID;
   }
 
-
   @Override
   public String toString() {
     return "Member{" +
@@ -252,7 +273,7 @@ public class Member {
         ", homeNumber='" + homeNumber + '\'' +
         ", householdMembers=" + householdMembers +
         ", sex='" + sex + '\'' +
-        ", comments='" + comments + '\'' +
+        ", note='" + note + '\'' +
         ", memberID=" + memberID +
         ", name='" + name + '\'' +
         ", surname='" + surname + '\'' +
@@ -264,12 +285,12 @@ public class Member {
         ", phoneNumber2='" + phoneNumber2 + '\'' +
         ", employmentStatus=" + employmentStatus +
         ", educationLevel=" + educationLevel +
-        ", proffesion=" + proffesion +
+        ", profession=" + profession +
         ", residence=" + residence +
         ", maritialStatus='" + maritialStatus + '\'' +
         ", invalidityStatus=" + invalidityStatus +
-        ", invalidityLevel=" + invalidityLevel +
-        ", invalidityDegree=" + invalidityDegree +
+        ", invalidityCategory=" + invalidityCategory +
+        ", invalidityPercentage=" + invalidityPercentage +
         ", injuryCause=" + injuryCause +
         ", injuries=" + injuries +
         '}';
@@ -359,7 +380,7 @@ public class Member {
 
     if (parameters.get("profession") != null) {
 
-      if (!parameters.get("profession").contains(getProffesion())) {
+      if (!parameters.get("profession").contains(getProfession())) {
         return false;
       }
     }
@@ -398,7 +419,7 @@ public class Member {
 
       List<String> paramInjuries = parameters.get("injury");
       List<String> memberInjuries = injuries.stream().map(Injury::getInjury)
-                                            .collect(Collectors.toList());
+          .collect(Collectors.toList());
 
       return !Collections.disjoint(paramInjuries, memberInjuries);
     }
@@ -406,6 +427,155 @@ public class Member {
     return true;
   }
 
+  public static class Builder{
+    private SimpleStringProperty name;
+    private SimpleStringProperty surname;
+    private SimpleStringProperty ssn;
+    private SimpleStringProperty cityProvince;
+    private SimpleStringProperty street;
+    private SimpleStringProperty homeNumber;
+    private SimpleStringProperty householdMembers;
+    private SimpleStringProperty sex;
+    private SimpleStringProperty note;
+    private int memberID;
+    private SimpleStringProperty birthDate;
+    private SimpleStringProperty deathDate;
+    private SimpleStringProperty city;
+    private SimpleStringProperty phoneNumber;
+    private SimpleStringProperty phoneNumber2;
+    private SimpleStringProperty employmentStatus;
+    private SimpleStringProperty educationLevel;
+    private SimpleStringProperty profession;
+    private SimpleStringProperty residence;
+    private SimpleStringProperty maritialStatus;
+    private SimpleStringProperty invalidityStatus;
+    private int invalidityCategory;
+    private int invalidityPercentage;
+    private SimpleStringProperty injuryCause;
+    private List<Injury> injuries;
+
+    public Builder(String name, String surname){
+      this.name = new SimpleStringProperty(name);
+      this.surname = new SimpleStringProperty(surname);
+    }
+
+    public Builder withSsn(String ssn) {
+      this.ssn = new SimpleStringProperty(ssn);
+      return this;
+    }
+
+    public Builder inCityProvince(String cityProvince) {
+      this.cityProvince = new SimpleStringProperty(cityProvince);
+      return this;
+    }
+
+    public Builder atStreet(String street) {
+      this.street = new SimpleStringProperty(street);
+      return this;
+    }
+
+    public Builder withHomeNumber(String homeNumber) {
+      this.homeNumber = new SimpleStringProperty(homeNumber);
+      return this;
+    }
+    public Builder withHousholdMembers(String householdMembers) {
+      this.householdMembers = new SimpleStringProperty(householdMembers);
+      return this;
+    }
+
+    public Builder ofSex(String sex) {
+      this.sex = new SimpleStringProperty(sex);
+      return this;
+    }
+
+    public Builder withNote(String note) {
+      this.note = new SimpleStringProperty(note);
+      return this;
+    }
+
+    public Builder withId(int id) {
+      this.memberID = id;
+      return this;
+    }
+
+    public Builder withBirthDate(String birthDate) {
+      this.birthDate = new SimpleStringProperty(birthDate);
+      return this;
+    }
+
+    public Builder withDeathDate(String deathDate) {
+      this.deathDate = new SimpleStringProperty(deathDate);
+      return this;
+    }
+
+    public Builder inCity(String city) {
+      this.city = new SimpleStringProperty(city);
+      return this;
+    }
+
+    public Builder withPhoneNumber(String phoneNumber) {
+      this.phoneNumber = new SimpleStringProperty(phoneNumber);
+      return this;
+    }
+
+    public Builder withPhoneNumber2(String phoneNumber2) {
+      this.phoneNumber2 = new SimpleStringProperty(phoneNumber2);
+      return this;
+    }
+
+    public Builder withEmploymentStatus(String employmentStatus){
+      this.employmentStatus = new SimpleStringProperty(employmentStatus);
+      return this;
+    }
+    public Builder withEducationLevel(String educationLevel){
+      this.educationLevel = new SimpleStringProperty(educationLevel);
+      return this;
+    }
+
+    public Builder withProfession(String profession){
+      this.profession = new SimpleStringProperty(profession);
+      return this;
+    }
+
+    public Builder withResidence(String residence){
+      this.residence = new SimpleStringProperty(residence);
+      return this;
+    }
+
+    public Builder withMaritialStatus(String maritialStatus){
+      this.maritialStatus = new SimpleStringProperty(maritialStatus);
+      return this;
+    }
+
+    public Builder withInvalidityStatus(String invalidityStatus){
+      this.invalidityStatus = new SimpleStringProperty(invalidityStatus);
+      return this;
+    }
+
+    public Builder withInvalidityCategory(int invalidityCategory){
+      this.invalidityCategory = invalidityCategory;
+      return this;
+    }
+
+    public Builder withInvalidityPercentage(int invalidityPercentage){
+      this.invalidityPercentage = invalidityPercentage;
+      return this;
+    }
+
+    public Builder withInjuryCause(String injuryCause){
+      this.injuryCause = new SimpleStringProperty(injuryCause);
+      return this;
+    }
+
+    public Builder withInjuries(List<Injury> injuries){
+      this.injuries = injuries;
+      return this;
+    }
+
+    public Member build(){
+      return new Member(this);
+    }
+  }
   //TODO override equals(), hashCode() and toString(), provide getters/setters when class is finished
 
 }
