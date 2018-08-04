@@ -29,6 +29,7 @@ public class MySqlAdapter implements DataAdapter {
   private Map<String, Integer> injuryLocations;
   private Map<String, Integer> invalidityStatuses;
   private Map<String, Integer> invalidityCategories;
+  private Map<String, Integer> invalidityPercentages;
   private Map<String, Integer> professions;
   private Map<String, Integer> residences;
 
@@ -294,10 +295,10 @@ public class MySqlAdapter implements DataAdapter {
   @Override
   public List<String> getInvalidityPercentages() throws SQLException {
     if (invalidityCategories == null || invalidityCategories.isEmpty()) {
-      invalidityCategories = getKeyValueData("invalidity_ranking", "invalidity_percentage");
+      invalidityPercentages = getKeyValueData("invalidity_ranking", "invalidity_percentage");
     }
 
-    return new ArrayList<>(invalidityCategories.keySet());
+    return new ArrayList<>(invalidityPercentages.keySet());
   }
 
   /**
