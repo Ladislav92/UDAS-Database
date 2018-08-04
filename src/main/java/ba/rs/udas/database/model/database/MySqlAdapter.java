@@ -7,18 +7,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
- * Frankensteins monster to access the data from DB. Probably should be extracted to server side app and act
- * as web client.
+ * Frankensteins monster to access the data from DB. Probably should be extracted to server side app and act as web client.
  *
  * @author Ladislav
  */
 public class MySqlAdapter implements DataAdapter {
+
+  private Map<String, Integer> cities;
+  private Map<String, Integer> cityProvinces;
+  private Map<String, Integer> educationalLevels;
+  private Map<String, Integer> employmentStatuses;
+  private Map<String, Integer> injuryCauses;
+  private Map<String, Integer> injuryLocations;
+  private Map<String, Integer> invalidityStatuses;
+  private Map<String, Integer> invalidityCategories;
+  private Map<String, Integer> professions;
+  private Map<String, Integer> residences;
+//  {
+//    try {
+//      getCities();
+//      getEducationLevels(); getResidences();
+//      getEmploymentStatuses();
+//      getInjuryCauses();
+//      getInvalidityCategories();
+//      getInvalidityStatuses();
+//      getInvalidityPercentages();
+//      getInvalidityCategories();
+//      getProvinces();
+//      getProfessions();
+//  } catch (SQLException e) {
+//      e.printStackTrace();
+//    }
+//  }
 
   /**
    * Inserts member received in parameter into database by executing query.
@@ -27,8 +55,24 @@ public class MySqlAdapter implements DataAdapter {
    * @return True or false if member exists or insertion failed.
    */
   @Override
-  public boolean addMember(Member member) {
-    throw new NotImplementedException();
+  public boolean addMember(Member member) throws SQLException {
+
+    String query = "INSERT INTO member (name, surname, ssn, birth_date, phone_number, phone_number_2, city_id, city_province_id,"
+        + " street_name, home_number, household_members, death_date,"
+        + "education_level_id, profession_id, employment_status_id, injury_cause_id,"
+        + "invalidity_status_id, residence_id, sex, note)"
+
+        + "VALUES ('" + member.getName() + "', '" + member.getSurname() + "', '" + member.getSsn() +
+        "', '" + member.getBirthDate() + "', '" + member.getPhoneNumber() + "', '" + member.getPhoneNumber2() + "'"
+        + ", " + cities.get(member.getCity()) + "," + cityProvinces.get(member.getCityProvince()) + ", "
+        + " '" + member.getStreet() + "', '" + member.getHomeNumber() + "', '" + member.getHouseholdMembers() + "'"
+        + ", '" + member.getDeathDate() + "', " + educationalLevels.get(member.getEducationLevel()) + ","
+        + " " + professions.get(member.getProfession()) + ", " + employmentStatuses.get(member.getEmploymentStatus()) + ","
+        + " " + injuryCauses.get(member.getInjuryCause()) + ", " + invalidityStatuses.get(member.getInvalidityStatus()) + ","
+        + " " + residences.get(member.getResidence()) + ", '" + member.getSex() + "', '" + member.getNote() + "');";
+
+    return executeUpdate(query) != -1;
+
   }
 
   /**
@@ -65,13 +109,13 @@ public class MySqlAdapter implements DataAdapter {
   public List<Member> getMembers(Map<String, List<String>> searchParameters) throws SQLException {
 
     return getMembers().stream()
-                       .filter(m -> m.hasMatch(searchParameters))
-                       .collect(Collectors.toList());
+        .filter(m -> m.hasMatch(searchParameters))
+        .collect(Collectors.toList());
   }
 
   /**
-   * Returns list that contains all the members that database holds. If there are no member entries in the DB,
-   * empty list is returned.
+   * Returns list that contains all the members that database holds. If there are no member entries in the DB, empty list is
+   * returned.
    *
    * @return List of members.
    */
@@ -133,8 +177,8 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Helper method for getMembers. It exists to collect all the injuries member has. It's implemented
-   * separately because Injury table has Many-To-Many relationship.
+   * Helper method for getMembers. It exists to collect all the injuries member has. It's implemented separately because Injury
+   * table has Many-To-Many relationship.
    *
    * @param id - members ID
    * @return List that contains Injury objects
@@ -153,128 +197,183 @@ public class MySqlAdapter implements DataAdapter {
 
       String povreda = resultSet.getString("mjesto_povrede");
       boolean amputacija = resultSet.getBoolean("amputacija");
+      int injuryID = resultSet.getInt("id");
 
-      injuries.add(new Injury(povreda, amputacija));
+      injuries.add(new Injury(injuryID, povreda, amputacija));
 
     }
 
     return injuries;
   }
 
+  private Map<String, Integer> getKeyValueData(String table) throws SQLException {
+    return getKeyValueData(table, table);
+  }
+
+
   /**
-   * Returns all cities database holds. It's used to populate comboboxes for inserting and changing members.
-   * User is not allowed to add new cities trough add/change member directly.
+   * Returns all cities database holds. It's used to populate comboboxes for inserting and changing members. User is not allowed
+   * to add new cities trough add/change member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public Map<Integer, String> getCities() {
-    throw new NotImplementedException();
+  public List<String> getCities() throws SQLException {
+    if (cities == null || cities.isEmpty()) {
+      cities = getKeyValueData("city");
+    }
+
+    return new ArrayList<>(cities.keySet());
   }
 
   /**
-   * Returns all city provinces database holds. It's used to populate comboboxes for inserting and changing
-   * members. User is not allowed to change city entries trough add/change member directly.
+   * Returns all city provinces database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * allowed to change city entries trough add/change member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getProvinces() {
-    throw new NotImplementedException();
+  public List<String> getProvinces() throws SQLException {
+    if (cityProvinces == null || cityProvinces.isEmpty()) {
+      cityProvinces = getKeyValueData("city_province");
+    }
+
+    return new ArrayList<>(cityProvinces.keySet());
   }
 
   /**
-   * Returns all education levels database holds. It's used to populate comboboxes for inserting and changing
-   * members. User is not allowed to make changes on this table trough add/change member directly.
+   * Returns all education levels database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * allowed to make changes on this table trough add/change member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getEducationLevels() {
-    throw new NotImplementedException();
+  public List<String> getEducationLevels() throws SQLException {
+    if (educationalLevels == null || educationalLevels.isEmpty()) {
+      educationalLevels = getKeyValueData("education_level");
+    }
+
+    return new ArrayList<>(educationalLevels.keySet());
   }
 
   /**
-   * Returns all professions database holds. It's used to populate comboboxes for inserting and changing
-   * members. User is not allowed to make changes on this table trough add/change member directly.
+   * Returns all professions database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * allowed to make changes on this table trough add/change member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getProfessions() {
-    throw new NotImplementedException();
+  public List<String> getProfessions() throws SQLException {
+    if (professions == null || professions.isEmpty()) {
+      professions = getKeyValueData("profession");
+    }
+
+    return new ArrayList<>(professions.keySet());
   }
 
   /**
-   * Returns all invalidity statuses database holds. It's used to populate comboboxes for inserting and
-   * changing members. User is not allowed to make changes on this table trough add/change dialogs member
-   * directly.
+   * Returns all invalidity statuses database holds. It's used to populate comboboxes for inserting and changing members. User is
+   * not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getInvalidityStatuses() {
-    throw new NotImplementedException();
+  public List<String> getInvalidityStatuses() throws SQLException {
+    if (invalidityStatuses == null || invalidityStatuses.isEmpty()) {
+      invalidityStatuses = getKeyValueData("invalidity_status");
+    }
+
+    return new ArrayList<>(invalidityStatuses.keySet());
   }
 
   /**
-   * Returns all invalidity categories database holds. It's used to populate comboboxes for inserting and
-   * changing members. User is not allowed to make changes on this table trough add/change dialogs member
-   * directly.
+   * Returns all invalidity categories database holds. It's used to populate comboboxes for inserting and changing members. User
+   * is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getInvalidityCategories() {
-    throw new NotImplementedException();
+  public List<String> getInvalidityCategories() throws SQLException {
+    if (invalidityCategories == null || invalidityCategories.isEmpty()) {
+      invalidityCategories = getKeyValueData("invalidity_ranking", "invalidity_category");
+    }
+
+    return new ArrayList<>(invalidityCategories.keySet());
   }
 
   /**
-   * Returns all invalidity percentage values that database holds. It's used to populate comboboxes for
-   * inserting and changing members. User is not allowed to make changes on this table trough add/change
-   * dialogs member directly.
+   * Returns all invalidity percentage values that database holds. It's used to populate comboboxes for inserting and changing
+   * members. User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getInvalidityPercentage() {
-    throw new NotImplementedException();
+  public List<String> getInvalidityPercentages() throws SQLException {
+    if (invalidityCategories == null || invalidityCategories.isEmpty()) {
+      invalidityCategories = getKeyValueData("invalidity_ranking", "invalidity_percentage");
+    }
+
+    return new ArrayList<>(invalidityCategories.keySet());
   }
 
   /**
-   * Returns all Employment status values that database holds. It's used to populate comboboxes for inserting
-   * and changing members. User is not allowed to make changes on this table trough add/change dialogs member
-   * directly.
+   * Returns all Employment status values that database holds. It's used to populate comboboxes for inserting and changing
+   * members. User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getEmploymentStatuses() {
-    throw new NotImplementedException();
+  public List<String> getEmploymentStatuses() throws SQLException {
+    if (employmentStatuses == null || employmentStatuses.isEmpty()) {
+      employmentStatuses = getKeyValueData("employment_Status");
+    }
+
+    return new ArrayList<>(employmentStatuses.keySet());
   }
 
   /**
-   * Returns all injury causes values that database holds. It's used to populate comboboxes for inserting and
-   * changing members. User is not allowed to make changes on this table trough add/change dialogs member
-   * directly.
+   * Returns all injury causes values that database holds. It's used to populate comboboxes for inserting and changing members.
+   * User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getInjuryCauses() {
-    throw new NotImplementedException();
+  public List<String> getInjuryCauses() throws SQLException {
+    if (injuryCauses == null || injuryCauses.isEmpty()) {
+      injuryCauses = getKeyValueData("injury_cause");
+    }
+
+    return new ArrayList<>(injuryCauses.keySet());
   }
 
   /**
-   * Returns all injury type values that database holds. It's used to populate comboboxes for inserting and
-   * changing members. User is not allowed to make changes on this table trough add/change dialogs member
-   * directly.
+   * Returns all injury type values that database holds. It's used to populate comboboxes for inserting and changing members. User
+   * is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
    */
   @Override
-  public List<String> getInjuryTypes() {
-    throw new NotImplementedException();
+  public List<String> getInjuryLocations() throws SQLException {
+    if (injuryLocations == null || injuryLocations.isEmpty()) {
+      injuryLocations = getKeyValueData("injury_location");
+    }
+
+    return new ArrayList<>(injuryLocations.keySet());
+  }
+
+  /**
+   * Returns all residence values that database holds. It's used to populate comboboxes for inserting and changing members. User
+   * is not allowed to make changes on this table trough add/change member dialogs member directly.
+   *
+   * @return List or empty list.
+   */
+  @Override
+  public List<String> getResidences() throws SQLException {
+
+    if (residences == null || residences.isEmpty()) {
+      residences = getKeyValueData("residence");
+    }
+    return new ArrayList<>(residences.keySet());
   }
 
   private ResultSet executeQuery(String query) throws SQLException {
@@ -282,6 +381,28 @@ public class MySqlAdapter implements DataAdapter {
     Statement statement = connection.createStatement();
 
     return statement.executeQuery(query);
+  }
+
+  private int executeUpdate(String query) throws SQLException {
+    Connection connection = ConnectionManager.getConnection().orElseThrow(SQLException::new);
+    Statement statement = connection.createStatement();
+
+    return statement.executeUpdate(query);
+  }
+
+  private Map<String, Integer> getKeyValueData(String table, String attribute) throws SQLException {
+    String query = "SELECT * FROM " + table;
+    ResultSet resultSet = executeQuery(query);
+
+    Map<String, Integer> map = new HashMap<>();
+
+    while (resultSet.next()) {
+      int id = resultSet.getInt("id");
+      String value = resultSet.getString(attribute);
+      map.put(value, id);
+    }
+
+    return map;
   }
 }
 
