@@ -31,22 +31,6 @@ public class MySqlAdapter implements DataAdapter {
   private Map<String, Integer> invalidityCategories;
   private Map<String, Integer> professions;
   private Map<String, Integer> residences;
-//  {
-//    try {
-//      getCities();
-//      getEducationLevels(); getResidences();
-//      getEmploymentStatuses();
-//      getInjuryCauses();
-//      getInvalidityCategories();
-//      getInvalidityStatuses();
-//      getInvalidityPercentages();
-//      getInvalidityCategories();
-//      getProvinces();
-//      getProfessions();
-//  } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//  }
 
   /**
    * Inserts member received in parameter into database by executing query.
