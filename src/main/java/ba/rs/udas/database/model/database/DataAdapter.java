@@ -39,24 +39,24 @@ public interface DataAdapter {
 
   List<Member> getMembers(Map<String, List<String>> searchParameters) throws SQLException;
 
-  int insertCity(String city) throws SQLException;
+  int addCity(String city) throws SQLException;
 
-  int insertCityProvince(String cityProvince, String city) throws SQLException;
+  int addCityProvince(String cityProvince, String city) throws SQLException;
 
-  int insertEducationLevel(String educationLevel) throws SQLException;
+  int addEducationLevel(String educationLevel) throws SQLException;
 
-  int insertEmploymentStatus(String employmentStatus) throws SQLException;
+  int addEmploymentStatus(String employmentStatus) throws SQLException;
 
-  int insertInjuryCause(String injuryCause) throws SQLException;
+  int addInjuryCause(String injuryCause) throws SQLException;
 
-  int insertInjuryLocation(String injuryLocation) throws SQLException;
+  int addInjuryLocation(String injuryLocation) throws SQLException;
 
-  int insertInvalidityRanking(int invalidityCategory, int invalidityPercentage) throws SQLException;
+  int addInvalidityRanking(int invalidityCategory, int invalidityPercentage) throws SQLException;
 
-  int insertInvalidityStatus(String invalidityStatus) throws SQLException;
+  int addInvalidityStatus(String invalidityStatus) throws SQLException;
 
-  int insertProfession(String profession) throws SQLException;
+  int addProfession(String profession) throws SQLException;
 
-  int insertResidence(String residence) throws SQLException;
+  int addResidence(String residence) throws SQLException;
 
 }
