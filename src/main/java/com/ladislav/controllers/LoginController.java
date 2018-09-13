@@ -5,7 +5,10 @@ import com.ladislav.model.data.MySqlAdapter;
 import com.ladislav.util.SceneManager;
 import java.io.IOException;
 import java.sql.SQLException;
+
+import com.ladislav.util.StageManager;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -33,7 +36,8 @@ public class LoginController implements Controller {
   }
 
   public void setStage(Stage stage) {
-    this.stage = stage;
+       this.stage = stage;
+       StageManager.setResizable(this.stage,false);
   }
 
   @Override
@@ -64,6 +68,7 @@ public class LoginController implements Controller {
 
     try {
       SceneManager.changeScene(dataAdapter, stage, getClass().getResource("/view/navigation.fxml"), new NavigationController());
+      StageManager.setResizable(this.stage,true);
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -16,8 +16,8 @@ import javafx.stage.Stage;
 
 public class SceneManager {
 
-  public static final int DEFAULT_WIDTH = 800;
-  public static final int DEFAULT_HEIGHT = 600;
+  public static final int DEFAULT_WIDTH = 260;
+  public static final int DEFAULT_HEIGHT = 340;
 
   public static void changeScene(Stage stage, URL resource, Controller controller) throws IOException {
     changeScene(stage, resource, controller, DEFAULT_WIDTH, DEFAULT_HEIGHT);
