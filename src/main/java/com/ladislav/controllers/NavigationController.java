@@ -18,6 +18,7 @@ public class NavigationController implements Controller {
 
   @FXML
   public void onMembersBtnClicked(ActionEvent actionEvent) throws IOException {
+   //probably do something here to change the scene's width and height and make it resizable
     SceneManager
         .changeScene
             (

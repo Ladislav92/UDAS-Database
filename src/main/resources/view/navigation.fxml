@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.141"
-  xmlns:fx="http://javafx.com/fxml/1">
+
+<GridPane alignment="CENTER" hgap="10" prefHeight="274.0" prefWidth="241.0" stylesheets="@style.css" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints/>
+    <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-    <RowConstraints/>
+    <RowConstraints minHeight="10.0" prefHeight="40.0" />
+    <RowConstraints minHeight="10.0" prefHeight="40.0" />
+    <RowConstraints minHeight="10.0" prefHeight="40.0" />
+    <RowConstraints minHeight="10.0" prefHeight="40.0" />
+    <RowConstraints minHeight="10.0" prefHeight="40.0" />
+    <RowConstraints />
   </rowConstraints>
   <padding>
-    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
   </padding>
-  <Button id="membersBtn" mnemonicParsing="false" text="Pregled članova" GridPane.rowIndex="0"
-    onAction="#onMembersBtnClicked"/>
-  <Button id="artSchoolBtn" mnemonicParsing="false" text="Škola slikanja" GridPane.rowIndex="1"
-    onAction="#onArtSchoolBtnClicked"/>
-  <Button id="logoutBtn" mnemonicParsing="false" text="Odjava" GridPane.rowIndex="2"
-    onAction="#onLogoutBtnClicked"/>
+   <children>
+     <Button id="membersBtn" mnemonicParsing="false" onAction="#onMembersBtnClicked" prefHeight="75.0" prefWidth="190.0" text="Pregled članova" GridPane.rowIndex="1" />
+     <Button id="artSchoolBtn" mnemonicParsing="false" onAction="#onArtSchoolBtnClicked" prefHeight="75.0" prefWidth="190.0" text="Škola slikanja" GridPane.rowIndex="2" />
+     <Button id="logoutBtn" mnemonicParsing="false" onAction="#onLogoutBtnClicked" prefHeight="75.0" prefWidth="190.0" text="Odjava" GridPane.rowIndex="3" />
+   </children>
 </GridPane>

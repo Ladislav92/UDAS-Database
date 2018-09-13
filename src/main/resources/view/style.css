@@ -1,0 +1,54 @@
+
+.button{
+    -fx-background-color: #778ca3;
+    -fx-background-radius: 22;
+    -fx-text-fill: #d1d8e0;
+    -fx-border-color: #4b6584;
+    -fx-border-radius: 22;
+    -fx-border-width: 2px;
+}
+
+.button:hover{
+    -fx-background-color: #859cb3;
+}
+.button:pressed{
+    -fx-background-color: #667a91;
+}
+
+.text-field{
+    -fx-background-color: #778ca3;
+    /* if you don't find a way to override pane color and want a
+    custom pane color, use this!
+    -fx-border-width: 2px;
+    -fx-text-fill: #4d5c6f;
+    -fx-border-color: #667a91;
+  */
+}
+
+.table-view {
+    -fx-background-color: #d1d8e0;
+}
+
+.table-view .column-header {
+    -fx-background-color: #0fb9b1;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: red;
+}
+
+.combo-box {
+    -fx-background-color: #a5b1c2;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #a5b1c2;
+}
+
+.radio-button .radio .dot:selected {
+    -fx-background-color: #4b6584;
+}
+
+.text-area .content{
+    -fx-background-color: #778ca3;
+}

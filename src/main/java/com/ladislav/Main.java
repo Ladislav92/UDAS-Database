@@ -28,10 +28,16 @@ public class Main extends Application {
 
     LoginController loginController = new LoginController();
     loginLoader.setController(loginController);
+
     Parent root = loginLoader.load();
     loginController.setStage(primaryStage);
+
+
+    Scene scene = new Scene(root);
+    scene.getStylesheets().add(this.getClass() .getResource("/view/style.css").toExternalForm());
+
     primaryStage.setTitle("Dobrodošli!");
-    primaryStage.setScene(new Scene(root, 300, 275));
+    primaryStage.setScene(scene);
     primaryStage.show();
   }
 
