@@ -54,16 +54,16 @@ as I said it is still in prototyping phase, also I will try to add localization 
 
 Login:
 
-![Login](https://i.imgur.com/JTxKVwc.png "Login")
+![Login](https://i.imgur.com/45ochmn.png "Login")
 
 Navigation:
 
-![Navigation](https://i.imgur.com/PiR02nw.png "Navigation")
+![Navigation](https://i.imgur.com/TxTYVuZ.png "Navigation")
 
 Member management panel:
 
-![Member Management](https://i.imgur.com/XQt6Gvp.png "Member management")
+![Member Management](https://i.imgur.com/4ZTTNvI.png "Member management")
 
-Add member:
+Add member (still needs translations):
 
 ![add member](https://i.imgur.com/6UZWRzC.png "Add member")
