@@ -3,6 +3,7 @@ package ba.rs.udas.database.ui;
 import static ba.rs.udas.database.Utils.Preconditions.checkNotNull;
 
 import ba.rs.udas.database.Main;
+import ba.rs.udas.database.Utils.Reflections;
 import ba.rs.udas.database.ui.controllers.Controller;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,12 +13,17 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
+import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public final class StageManager {
@@ -27,6 +33,56 @@ public final class StageManager {
   public StageManager(Stage stage) {
     checkNotNull(stage, "stage");
     this.stage = stage;
+    stage.sceneProperty().addListener(this::setStageMinSizeListener);
+  }
+
+  // By default if stage minimal dimension; let's say minWidth was bound to a scene width, and scene root
+  // prefWidth is set, initial stage width calculation have unintended behaviour where window decorations
+  // width added to a stage width, which allows stage to be resized by the width of such decoration.
+  // This code calculates proper Stage size if scene prefWidth was set.
+  private void setStageMinSizeListener(ObservableValue<? extends Scene> _1, Scene _2, Scene newScene) {
+    Platform.runLater(() -> {
+      Parent root = newScene.getRoot();
+
+      Optional<Double> sceneMinWidth = getMinWidth(root);
+      Optional<Double> sceneMinHeight = getMinHeight(root);
+      Optional<Double> scenePrefWidth = getPrefWidth(root);
+      Optional<Double> scenePrefHeight = getPrefHeight(root);
+
+      double stageWidth = stage.getWidth();
+      double stageHeight = stage.getHeight();
+      double stageMinWidth = stageWidth;
+      double stageMinHeight = stageHeight;
+
+      if (sceneMinWidth.isPresent() && scenePrefWidth.isPresent()
+          && scenePrefWidth.get() > sceneMinWidth.get()) {
+        stageMinWidth = sceneMinWidth.get() + (stageWidth - sceneMinWidth.get());
+      }
+
+      if (sceneMinHeight.isPresent() && scenePrefHeight.isPresent()
+          && scenePrefHeight.get() > sceneMinHeight.get()) {
+        stageMinHeight = sceneMinHeight.get() + (stageHeight - sceneMinHeight.get());
+      }
+
+      stage.setMinWidth(stageMinWidth);
+      stage.setMinHeight(stageMinHeight);
+    });
+  }
+
+  private Optional<Double> getMinWidth(Object object) {
+    return Reflections.getField(Region.class, Double.class, "_minWidth", object);
+  }
+
+  private Optional<Double> getMinHeight(Object object) {
+    return Reflections.getField(Region.class, Double.class, "_minHeight", object);
+  }
+
+  private Optional<Double> getPrefWidth(Object object) {
+    return Reflections.getField(Region.class, Double.class, "_prefWidth", object);
+  }
+
+  private Optional<Double> getPrefHeight(Object object) {
+    return Reflections.getField(Region.class, Double.class, "_prefHeight", object);
   }
 
   public static ResourceBundle getResourceBundle(Class<? extends Controller> clazz, Locale locale) {
@@ -98,7 +154,6 @@ public final class StageManager {
       }
 
       stage.setScene(scene);
-
     } catch (IOException e) {
       //TODO: logging
       System.out.println("Error loading scene graph for controller: " + clazz.getSimpleName() + "\n" + e);

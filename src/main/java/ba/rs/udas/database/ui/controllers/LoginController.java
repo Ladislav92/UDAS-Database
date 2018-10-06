@@ -1,8 +1,10 @@
 package ba.rs.udas.database.ui.controllers;
 
 import ba.rs.udas.database.Main;
+import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.ui.LanguageManager;
 import ba.rs.udas.database.ui.LanguageManager.Language;
+import java.sql.SQLException;
 import java.util.concurrent.ForkJoinPool;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -35,17 +37,10 @@ public final class LoginController implements Controller {
   private Button loginButton;
 
   @FXML
-  private Button popupButton; //temp
-
-  @FXML
   private ComboBox<Language> languageComboBox;
 
   public static void setupStage(Stage stage) {
     stage.setResizable(false);
-    stage.setMinWidth(640);
-    stage.setMinHeight(480);
-    stage.setWidth(640);
-    stage.setHeight(480);
   }
 
   private void setUpBindings() {
@@ -100,12 +95,12 @@ public final class LoginController implements Controller {
     String password = passwordField.getText();
 
     Main.getMainStageManager().changeScene(NavigationController.class);
-    /*try {
+    try {
       ConnectionManager.connect(username, password);
     } catch (SQLException e) {
       System.out.println(e); //TODO: proper logging
       showLoginErrorDialog(e.getMessage());
-    }*/
+    }
   }
 
   @FXML

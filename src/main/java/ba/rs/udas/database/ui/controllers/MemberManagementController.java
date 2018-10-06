@@ -48,10 +48,6 @@ public final class MemberManagementController implements Controller, Initializab
 
   public static void setupStage(Stage stage) {
     stage.setResizable(true);
-    stage.setMinWidth(640);
-    stage.setMinHeight(480);
-    stage.setWidth(800);
-    stage.setHeight(600);
   }
 
   @Override

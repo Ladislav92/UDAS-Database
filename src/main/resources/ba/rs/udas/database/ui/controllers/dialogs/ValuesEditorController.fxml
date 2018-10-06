@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+  minHeight="400"
+  minWidth="250"
+  prefHeight="400"
+  prefWidth="250"
+  fx:controller="ba.rs.udas.database.ui.controllers.dialogs.ValuesEditorController"
+  fx:id="rootPane">
+  <padding>
+    <Insets bottom="5" left="10" right="10" top="5"/>
+  </padding>
+  <center>
+    <VBox VBox.vgrow="ALWAYS" spacing="5">
+      <ComboBox minHeight="25" prefWidth="${tableValuesListView.width}" fx:id="tablesComboBox"/>
+      <ListView VBox.vgrow="ALWAYS" fx:id="tableValuesListView"/>
+      <HBox>
+        <Button text="Add"/>
+        <Button text="Edit"/>
+        <Button text="Remove"/>
+      </HBox>
+    </VBox>
+  </center>
+</BorderPane>
