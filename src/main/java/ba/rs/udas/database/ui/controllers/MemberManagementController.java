@@ -3,15 +3,20 @@ package ba.rs.udas.database.ui.controllers;
 import ba.rs.udas.database.Main;
 import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.model.database.DataAdapter;
+import ba.rs.udas.database.model.member.Injury;
 import ba.rs.udas.database.model.member.Member;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -70,9 +75,7 @@ public final class MemberManagementController implements Controller, Initializab
   }
 
   public void onBackBtnClicked() {
-    /*SceneManager.changeScene(stage, getClass().getResource(
-        "/ba/rs/udas/database/ui/controllers/navigation.fxml"),
-        new NavigationController());*/
+
   }
 
   @FXML
@@ -95,15 +98,16 @@ public final class MemberManagementController implements Controller, Initializab
   }
 
   // Options menu
-
   @FXML
   private void openNewMemberDialog(ActionEvent actionEvent) {
-    System.out.println("openNewMemberDialog");
+    Main.getMainStageManager()
+        .changeScene(AddMemberController.class);
   }
 
   @FXML
   private void onNewMemberMenuItemClicked(ActionEvent actionEvent) {
-    System.out.println("onNewMemberMenuItemClicked");
+    Main.getMainStageManager()
+        .changeScene(AddMemberController.class);
   }
 
   @FXML
@@ -147,4 +151,5 @@ public final class MemberManagementController implements Controller, Initializab
   private void onAboutMenuItemClicked(ActionEvent actionEvent) {
     System.out.println("onAboutMenuItemClicked");
   }
+
 }

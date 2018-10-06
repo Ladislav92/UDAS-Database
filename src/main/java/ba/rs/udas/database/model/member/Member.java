@@ -306,6 +306,7 @@ public class Member {
 
   public boolean hasMatch(Map<String, List<String>> parameters) {
 
+    //todo think about contains/starts with/ends with
     if (parameters.get("name") != null) {
       if (!parameters.get("name").contains(getName())) {
         return false;

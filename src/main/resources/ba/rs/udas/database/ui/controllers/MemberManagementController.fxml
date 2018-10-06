@@ -49,7 +49,7 @@
       </MenuBar>
 
       <ToolBar minHeight="40.0">
-        <Button minWidth="$toolBarButtonWidth" text="%newMemberToolBarButton_text"/>
+        <Button minWidth="$toolBarButtonWidth" text="%newMemberToolBarButton_text" onAction="#openNewMemberDialog"/>
         <Button minWidth="$toolBarButtonWidth" text="%editMemberToolBarButton_text"/>
         <Button minWidth="$toolBarButtonWidth" text="%deleteMemberToolBarButton_text"/>
         <Button minWidth="$toolBarButtonWidth" text="%detailsToolBarButton_text"/>

@@ -41,7 +41,6 @@
             <Insets bottom="-10"/>
           </padding>
         </Label>
-        <Label text="──────────────────────"/>
         <Label styleClass="login-logo, login-logo__bottom" text="%databaseLabel_text"/>
       </VBox>
 
