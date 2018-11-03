@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Frankensteins monster to access the data from DB. Probably should be extracted to server side app and act as web client.
@@ -80,7 +79,7 @@ public class MySqlAdapter implements DataAdapter {
    */
   @Override
   public boolean updateMember(int id, Member other) {
-    throw new NotImplementedException();
+    return false;
   }
 
   /**

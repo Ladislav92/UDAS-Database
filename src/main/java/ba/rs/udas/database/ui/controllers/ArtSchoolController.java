@@ -2,7 +2,6 @@ package ba.rs.udas.database.ui.controllers;
 
 import ba.rs.udas.database.model.database.DataAdapter;
 import javafx.stage.Stage;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public final class ArtSchoolController implements Controller {
 
@@ -12,6 +11,6 @@ public final class ArtSchoolController implements Controller {
   }
 
   public void setDao(DataAdapter dataAdapter) {
-    throw new NotImplementedException();
+
   }
 }
