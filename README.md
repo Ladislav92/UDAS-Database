@@ -14,7 +14,7 @@ we decided to make application with UI.
 
 ## Some implementation details
 
-### Langauge - Java
+### Langauge - Java 11
 
 I picked Java language as the one I feel most comfortable with and because of its portability, althought all the computers 
 they are using are Windows OS.
@@ -35,12 +35,9 @@ that are containing data as city, province, injury type, invalidity category, wo
 
 ### How to build?
 
-You will need Maven 3.5.3. To pack executable jar we are currently using javafx-maven-plugin (zen.java). 
+You will need Maven 3.5.3. and Java 11 (openJDK)
 
-cd /project/root
-mvn jfx:jar
-
-Jar will be generated in /target/jfx/app folder.
+mvn compile exec:java
 
 We are using google styleguide for code formatting. *I am thinking to customize it !
 
