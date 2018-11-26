@@ -41,10 +41,13 @@ And class that converts JSON to Member objects and list of Strings probably.
 JSON to Member converter as backend (will be reconsidered in version 2, right)
 Class that does request to backend instead of DAO it used.
 
+#### IMPORTANT NOTE:
+We don't mind about security of the app (right now) nor its speed (we porbably won't ever) - it will run on local network.
+
 
 NOTE:
 About Login handling ... for first version it will be blasphemic client side login where username and password will be hardcoded.
 For efficiency, you know. ;)
 
 
-## Also check [readme from develop branch](https://www.google.com)develop branch for more context.
+## Also check [readme from develop branch](https://www.google.com) branch for more context.
