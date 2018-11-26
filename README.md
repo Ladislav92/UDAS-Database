@@ -26,11 +26,11 @@ They will be able to start entering the member data (searching, updating, CRUD s
 When they actually start to use the app - they will see what could be changed/added so there will be some feedback.
 We don't want to overcomplicate/overengeneer stuff because simpler the better.
 
-======================================================================================================================================
+
 After we provide them first working version of the application structure and internal mechanisms can be discussed and refactoring 
 for thigns which are good candidates for that and for which refactoring makes sense will be done and we can continue to implement 
 stuff for second (and later on) third version of the application.
-======================================================================================================================================
+
 For first version, 
 
 BACKEND basically needs 2 classes:
@@ -42,7 +42,7 @@ FRONTEND needs (beside all the missing GUI stuff and things):
 JSON to Member converter as backend (will be reconsidered in version 2, right)
 Class that does request to backend instead of DAO it used.
 
-======================================================================================================================================
+
 NOTE:
 About Login handling ... for first version it will be blasphemic client side login where username and password will be hardcoded.
 For efficiency, you know. ;)
