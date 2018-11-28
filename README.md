@@ -50,4 +50,4 @@ About Login handling ... for first version it will be blasphemic client side log
 For efficiency, you know. ;)
 
 
-## Also check [readme from develop branch](https://www.google.com) for more detailed context about application and the idea itself.
+## Also check [readme from develop branch](https://github.com/Ladislav92/UDAS-Database/blob/develop/README.md) for more detailed context about application and the idea itself.
