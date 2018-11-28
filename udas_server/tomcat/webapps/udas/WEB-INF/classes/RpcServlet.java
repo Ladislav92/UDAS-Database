@@ -38,6 +38,7 @@ public class RpcServlet extends HttpServlet{
         //TODO get first key from json object 
         String command = "a"; // responseAsJSON.getKey();
         
+        //Cheap way of doing this, should be done with reflection or something...
         switch(command){
             
             case "addMember": // For example - name has to be same as in DAO
