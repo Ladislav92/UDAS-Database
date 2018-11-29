@@ -1,6 +1,6 @@
-package ba.rs.udas.database.ui.controllers.dialogs;
+package ba.rs.udas.database.controllers.dialogs;
 
-import ba.rs.udas.database.ui.controllers.Controller;
+import ba.rs.udas.database.controllers.Controller;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 

@@ -16,7 +16,7 @@
   minHeight="480" minWidth="640"
   prefHeight="480"
   prefWidth="640"
-  fx:controller="ba.rs.udas.database.ui.controllers.LoginController"
+  fx:controller="ba.rs.udas.database.controllers.LoginController"
   fx:id="rootPane"
 >
 

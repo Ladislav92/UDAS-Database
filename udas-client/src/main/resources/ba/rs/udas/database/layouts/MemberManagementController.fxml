@@ -15,7 +15,7 @@
   minWidth="640"
   prefHeight="480"
   prefWidth="640"
-  fx:controller="ba.rs.udas.database.ui.controllers.MemberManagementController"
+  fx:controller="ba.rs.udas.database.controllers.MemberManagementController"
 >
 
   <fx:define>

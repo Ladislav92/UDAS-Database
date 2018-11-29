@@ -6,6 +6,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 
+
+/**
+ *  Think about displaying JSON directly instead of having member class at all !
+ *
+ */
+
 public class Member {
 
   private int memberID;

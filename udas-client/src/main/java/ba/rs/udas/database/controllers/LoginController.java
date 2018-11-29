@@ -1,9 +1,9 @@
-package ba.rs.udas.database.ui.controllers;
+package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.Main;
 import ba.rs.udas.database.model.database.ConnectionManager;
-import ba.rs.udas.database.ui.LanguageManager;
-import ba.rs.udas.database.ui.LanguageManager.Language;
+import ba.rs.udas.database.view.LanguageManager;
+import ba.rs.udas.database.view.LanguageManager.Language;
 import java.sql.SQLException;
 import java.util.concurrent.ForkJoinPool;
 import javafx.application.Platform;

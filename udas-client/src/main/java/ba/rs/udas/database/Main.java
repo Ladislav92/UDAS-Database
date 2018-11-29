@@ -1,8 +1,8 @@
 package ba.rs.udas.database;
 
-import ba.rs.udas.database.ui.StageManager;
-import ba.rs.udas.database.ui.StageManager.StaticResources;
-import ba.rs.udas.database.ui.controllers.LoginController;
+import ba.rs.udas.database.view.StageManager;
+import ba.rs.udas.database.view.StageManager.StaticResources;
+import ba.rs.udas.database.controllers.LoginController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -1,4 +1,4 @@
-package ba.rs.udas.database.ui;
+package ba.rs.udas.database.util;
 
 public class InputValidator {
 

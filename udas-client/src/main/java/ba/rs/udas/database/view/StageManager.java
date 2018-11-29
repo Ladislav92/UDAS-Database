@@ -1,10 +1,10 @@
-package ba.rs.udas.database.ui;
+package ba.rs.udas.database.view;
 
-import static ba.rs.udas.database.Utils.Preconditions.checkNotNull;
+import static ba.rs.udas.database.util.Utils.Preconditions.checkNotNull;
 
 import ba.rs.udas.database.Main;
-import ba.rs.udas.database.Utils.Reflections;
-import ba.rs.udas.database.ui.controllers.Controller;
+import ba.rs.udas.database.util.Utils.Reflections;
+import ba.rs.udas.database.controllers.Controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,10 +36,13 @@ public final class StageManager {
     stage.sceneProperty().addListener(this::setStageMinSizeListener);
   }
 
-  // By default if stage minimal dimension; let's say minWidth was bound to a scene width, and scene root
-  // prefWidth is set, initial stage width calculation have unintended behaviour where window decorations
-  // width added to a stage width, which allows stage to be resized by the width of such decoration.
-  // This code calculates proper Stage size if scene prefWidth was set.
+  /**
+   *  By default if stage minimal dimension; let's say minWidth was bound to a scene width, and scene root
+   *  prefWidth is set, initial stage width calculation have unintended behaviour where window decorations
+   *  width added to a stage width, which allows stage to be resized by the width of such decoration.
+   *  This code calculates proper Stage size if scene prefWidth was set.
+   *
+   */
   private void setStageMinSizeListener(ObservableValue<? extends Scene> _1, Scene _2, Scene newScene) {
     Platform.runLater(() -> {
       Parent root = newScene.getRoot();

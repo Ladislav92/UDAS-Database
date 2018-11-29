@@ -1,6 +1,6 @@
-package ba.rs.udas.database;
+package ba.rs.udas.database.util;
 
-import static ba.rs.udas.database.Utils.Preconditions.checkNotNull;
+import static ba.rs.udas.database.util.Utils.Preconditions.checkNotNull;
 
 import java.lang.reflect.Field;
 import java.util.Optional;

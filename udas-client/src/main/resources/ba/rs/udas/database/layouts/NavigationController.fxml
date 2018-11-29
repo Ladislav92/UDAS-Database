@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
   minHeight="480" minWidth="640"
-  fx:controller="ba.rs.udas.database.ui.controllers.NavigationController">
+  fx:controller="ba.rs.udas.database.controllers.NavigationController">
 
   <center>
     <VBox alignment="CENTER" maxWidth="120" spacing="25" fx:id="buttonsLayout">

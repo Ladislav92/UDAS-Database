@@ -1,4 +1,4 @@
-package ba.rs.udas.database.ui;
+package ba.rs.udas.database.view;
 
 import java.util.Locale;
 import javafx.util.StringConverter;
@@ -21,6 +21,7 @@ public final class LanguageManager {
   }
 
   public enum Language {
+
     SERBIAN_LATIN(Locale.forLanguageTag("sr-Latin"), "Srpski"),
     SERBIAN_CYRILLIC(Locale.forLanguageTag("sr-Cyrillic"), "Српски"),
     ENGLISH(Locale.forLanguageTag("en"), "English");
@@ -34,9 +35,9 @@ public final class LanguageManager {
     }
 
     public static Language fromLiteral(String literal) {
-      for (Language e : values()) {
-        if (e.getLiteral().equals(literal)) {
-          return e;
+      for (Language language : values()) {
+        if (language.getLiteral().equals(literal)) {
+          return language;
         }
       }
 

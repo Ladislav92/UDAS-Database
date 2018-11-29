@@ -12,7 +12,7 @@
   minWidth="250"
   prefHeight="400"
   prefWidth="250"
-  fx:controller="ba.rs.udas.database.ui.controllers.dialogs.ValuesEditorController"
+  fx:controller="ba.rs.udas.database.controllers.dialogs.ValuesEditorController"
   fx:id="rootPane">
   <padding>
     <Insets bottom="5" left="10" right="10" top="5"/>

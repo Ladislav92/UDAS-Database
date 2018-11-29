@@ -1,4 +1,4 @@
-package ba.rs.udas.database.ui.controllers;
+package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.model.database.DataAdapter;
 import javafx.stage.Stage;
