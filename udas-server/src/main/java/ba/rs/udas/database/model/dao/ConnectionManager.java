@@ -1,4 +1,4 @@
-package ba.rs.udas.database.model.database;
+package ba.rs.udas.database.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

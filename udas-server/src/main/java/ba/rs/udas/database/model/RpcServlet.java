@@ -1,8 +1,8 @@
-package ba.rs.udas.database;
+package ba.rs.udas.database.model;
 
-import ba.rs.udas.database.model.database.ConnectionManager;
-import ba.rs.udas.database.model.database.DataAdapter;
-import ba.rs.udas.database.model.database.MySqlAdapter;
+import ba.rs.udas.database.model.dao.ConnectionManager;
+import ba.rs.udas.database.model.dao.DataAdapter;
+import ba.rs.udas.database.model.dao.MySqlAdapter;
 import ba.rs.udas.database.model.member.Member;
 
 import java.io.*;
@@ -14,7 +14,7 @@ import javax.servlet.http.*;
 
 /**
  * In current implementation login is handled from client side, for productivity sake and its temporary.
- * Rpc Servlet communicates with post requests with UDAS database client in JSON format:
+ * Rpc Servlet communicates with post requests with UDAS dao client in JSON format:
  * 
  *  {key : {param1, param2}}
  * 

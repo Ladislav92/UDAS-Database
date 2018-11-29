@@ -1,4 +1,4 @@
-package ba.rs.udas.database.model.database;
+package ba.rs.udas.database.model.dao;
 
 import ba.rs.udas.database.model.member.Injury;
 import ba.rs.udas.database.model.member.Member;
@@ -32,7 +32,7 @@ public class MySqlAdapter implements DataAdapter {
   private Map<String, Integer> residences;
 
   /**
-   * Inserts member received in parameter into database by executing query.
+   * Inserts member received in parameter into dao by executing query.
    *
    * @param member to be inserted
    * @return True or false if member exists or insertion failed.
@@ -59,7 +59,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Removes member from database based on membersID.
+   * Removes member from dao based on membersID.
    *
    * @param member to be removed
    * @return true or false if member does not exist or removal was unsuccessful.
@@ -97,7 +97,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns list that contains all the members that database holds. If there are no member entries in the DB, empty list is
+   * Returns list that contains all the members that dao holds. If there are no member entries in the DB, empty list is
    * returned.
    *
    * @return List of members.
@@ -194,7 +194,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all cities database holds. It's used to populate comboboxes for inserting and changing members. User is not allowed
+   * Returns all cities dao holds. It's used to populate comboboxes for inserting and changing members. User is not allowed
    * to add new cities trough add/change member directly.
    *
    * @return List or empty list.
@@ -209,7 +209,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all city provinces database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * Returns all city provinces dao holds. It's used to populate comboboxes for inserting and changing members. User is not
    * allowed to change city entries trough add/change member directly.
    *
    * @return List or empty list.
@@ -224,7 +224,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all education levels database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * Returns all education levels dao holds. It's used to populate comboboxes for inserting and changing members. User is not
    * allowed to make changes on this table trough add/change member directly.
    *
    * @return List or empty list.
@@ -239,7 +239,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all professions database holds. It's used to populate comboboxes for inserting and changing members. User is not
+   * Returns all professions dao holds. It's used to populate comboboxes for inserting and changing members. User is not
    * allowed to make changes on this table trough add/change member directly.
    *
    * @return List or empty list.
@@ -254,7 +254,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all invalidity statuses database holds. It's used to populate comboboxes for inserting and changing members. User is
+   * Returns all invalidity statuses dao holds. It's used to populate comboboxes for inserting and changing members. User is
    * not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
@@ -269,7 +269,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all invalidity categories database holds. It's used to populate comboboxes for inserting and changing members. User
+   * Returns all invalidity categories dao holds. It's used to populate comboboxes for inserting and changing members. User
    * is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
@@ -284,7 +284,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all invalidity percentage values that database holds. It's used to populate comboboxes for inserting and changing
+   * Returns all invalidity percentage values that dao holds. It's used to populate comboboxes for inserting and changing
    * members. User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
@@ -299,7 +299,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all Employment status values that database holds. It's used to populate comboboxes for inserting and changing
+   * Returns all Employment status values that dao holds. It's used to populate comboboxes for inserting and changing
    * members. User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
@@ -314,7 +314,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all injury causes values that database holds. It's used to populate comboboxes for inserting and changing members.
+   * Returns all injury causes values that dao holds. It's used to populate comboboxes for inserting and changing members.
    * User is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
@@ -329,7 +329,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all injury type values that database holds. It's used to populate comboboxes for inserting and changing members. User
+   * Returns all injury type values that dao holds. It's used to populate comboboxes for inserting and changing members. User
    * is not allowed to make changes on this table trough add/change dialogs member directly.
    *
    * @return List or empty list.
@@ -344,7 +344,7 @@ public class MySqlAdapter implements DataAdapter {
   }
 
   /**
-   * Returns all residence values that database holds. It's used to populate comboboxes for inserting and changing members. User
+   * Returns all residence values that dao holds. It's used to populate comboboxes for inserting and changing members. User
    * is not allowed to make changes on this table trough add/change member dialogs member directly.
    *
    * @return List or empty list.

@@ -1,4 +1,4 @@
-package ba.rs.udas.database.model.database;
+package ba.rs.udas.database.model.dao;
 
 import ba.rs.udas.database.model.member.Injury;
 import ba.rs.udas.database.model.member.Member;
