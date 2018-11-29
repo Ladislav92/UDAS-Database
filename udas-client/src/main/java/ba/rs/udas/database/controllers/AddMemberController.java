@@ -1,8 +1,6 @@
 package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.Main;
-import ba.rs.udas.database.model.database.ConnectionManager;
-import ba.rs.udas.database.model.database.DataAdapter;
 import ba.rs.udas.database.model.member.Member;
 import ba.rs.udas.database.model.member.Member.Builder;
 import java.net.URL;
@@ -46,7 +44,7 @@ public final class AddMemberController implements Controller, Initializable {
   public RadioButton sexMaleRadioButton;
   public TextArea noteTextArea;
 
-  private DataAdapter dataAdapter;
+  //private DataAdapter dataAdapter; Todo HTTP request
 
   @FXML
   public void openMemberManagement() {
@@ -106,15 +104,15 @@ public final class AddMemberController implements Controller, Initializable {
 //        .withInvalidityPercentage(Integer.parseInt(invalidityPercentageComboBox.getSelectionModel().getSelectedItem().trim()))
             .build();
 
-    System.out.println(ConnectionManager.getDataAdapter());
-    boolean added = ConnectionManager.getDataAdapter().addMember(newMember);
+    // TODO HTTP request
+//    boolean added = ConnectionManager.getDataAdapter().addMember(newMember);
 
-    if (added) {
-      openMemberManagement();
-    } else {
-      System.out.println("Add member failed. ");
-      //TODO dialog
-    }
+//    if (added) {
+//      openMemberManagement();
+//    } else {
+//      System.out.println("Add member failed. ");
+//      //TODO dialog
+//    }
   }
 
   private String validateInput(String name, String surname, String ssn, String birthDate, String deathDate, String phoneNumber,
@@ -149,22 +147,24 @@ public final class AddMemberController implements Controller, Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
-    dataAdapter = ConnectionManager.getDataAdapter();
-    try {
-      fillCombobox(professionComboBox, dataAdapter.getProfessions());
-      fillCombobox(employmentStatusComboBox, dataAdapter.getEmploymentStatuses());
-      fillCombobox(injuryCauseComboBox, dataAdapter.getInjuryCauses());
-      fillCombobox(invalidityStatusComboBox, dataAdapter.getInvalidityStatuses());
-      fillCombobox(cityComboBox, dataAdapter.getCities());
-      fillCombobox(educationLevelComboBox, dataAdapter.getEducationLevels());
-      fillCombobox(residenceComboBox, dataAdapter.getResidences());
-      fillCombobox(cityProvinceComboBox, dataAdapter.getProvinces());
-      fillCombobox(invalidityCategoryComboBox, dataAdapter.getInvalidityCategories());
-      fillCombobox(invalidityPercentageComboBox, dataAdapter.getInvalidityPercentages());
+      // TODO http request
 
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+//    dataAdapter = ConnectionManager.getDataAdapter();
+//    try {
+//      fillCombobox(professionComboBox, dataAdapter.getProfessions());
+//      fillCombobox(employmentStatusComboBox, dataAdapter.getEmploymentStatuses());
+//      fillCombobox(injuryCauseComboBox, dataAdapter.getInjuryCauses());
+//      fillCombobox(invalidityStatusComboBox, dataAdapter.getInvalidityStatuses());
+//      fillCombobox(cityComboBox, dataAdapter.getCities());
+//      fillCombobox(educationLevelComboBox, dataAdapter.getEducationLevels());
+//      fillCombobox(residenceComboBox, dataAdapter.getResidences());
+//      fillCombobox(cityProvinceComboBox, dataAdapter.getProvinces());
+//      fillCombobox(invalidityCategoryComboBox, dataAdapter.getInvalidityCategories());
+//      fillCombobox(invalidityPercentageComboBox, dataAdapter.getInvalidityPercentages());
+//
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    }
   }
 
   private void fillCombobox(ComboBox<String> cb, Collection<String> data) {

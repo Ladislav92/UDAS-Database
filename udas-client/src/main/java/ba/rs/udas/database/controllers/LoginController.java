@@ -1,10 +1,8 @@
 package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.Main;
-import ba.rs.udas.database.model.database.ConnectionManager;
 import ba.rs.udas.database.view.LanguageManager;
 import ba.rs.udas.database.view.LanguageManager.Language;
-import java.sql.SQLException;
 import java.util.concurrent.ForkJoinPool;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -95,12 +93,16 @@ public final class LoginController implements Controller {
     String password = passwordField.getText();
 
     Main.getMainStageManager().changeScene(NavigationController.class);
-    try {
-      ConnectionManager.connect(username, password);
-    } catch (SQLException e) {
-      System.out.println(e); //TODO: proper logging
-      showLoginErrorDialog(e.getMessage());
-    }
+
+
+    //TODO httprequest at one point
+
+//    try {
+//      ConnectionManager.connect(username, password);
+//    } catch (SQLException e) {
+//      System.out.println(e); //TODO: proper logging
+//      showLoginErrorDialog(e.getMessage());
+//    }
   }
 
   @FXML

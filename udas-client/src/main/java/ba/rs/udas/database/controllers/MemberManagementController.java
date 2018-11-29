@@ -1,8 +1,6 @@
 package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.Main;
-import ba.rs.udas.database.model.database.ConnectionManager;
-import ba.rs.udas.database.model.database.DataAdapter;
 import ba.rs.udas.database.model.member.Member;
 import java.net.URL;
 import java.sql.SQLException;
@@ -44,7 +42,7 @@ public final class MemberManagementController implements Controller, Initializab
   @FXML
   private TableColumn<Member, String> secondaryPhoneTableColumn;
 
-  private DataAdapter dataAdapter;
+  //private DataAdapter dataAdapter; / TODO Async Request
 
   public static void setupStage(Stage stage) {
     stage.setResizable(true);
@@ -52,7 +50,7 @@ public final class MemberManagementController implements Controller, Initializab
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    dataAdapter = ConnectionManager.getDataAdapter();
+    //dataAdapter = ConnectionManager.getDataAdapter(); // TODO Async Request
 
     firstNameTableColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
     lastNameTableColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
@@ -82,12 +80,9 @@ public final class MemberManagementController implements Controller, Initializab
   private void displayAllMembers() {
     ObservableList<Member> memberObservableList = null;
 
-    try {
-      System.out.println(dataAdapter.getMembers());
-      memberObservableList = FXCollections.observableArrayList(dataAdapter.getMembers());
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+      //TODO Async Request
+      //System.out.println(dataAdapter.getMembers());
+      //memberObservableList = FXCollections.observableArrayList(dataAdapter.getMembers());
 
     membersTableView.setItems(memberObservableList);
   }
@@ -107,7 +102,6 @@ public final class MemberManagementController implements Controller, Initializab
 
   @FXML
   private void onSignOutMenuItemClicked(ActionEvent actionEvent) {
-    ConnectionManager.disconnect();
     Main.getMainStageManager()
         .changeScene(LoginController.class)
         .setupStage(LoginController::setupStage);

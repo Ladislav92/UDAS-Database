@@ -1,7 +1,6 @@
 package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.Main;
-import ba.rs.udas.database.model.database.ConnectionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -29,7 +28,7 @@ public final class NavigationController implements Controller {
   }
 
   public void onLogoutButtonClicked(final ActionEvent actionEvent) {
-    ConnectionManager.disconnect();
+    //TODO logout http request
     Main.getMainStageManager()
         .changeScene(LoginController.class)
         .setupStage(LoginController::setupStage);
