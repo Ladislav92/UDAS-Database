@@ -1,4 +1,12 @@
 package ba.rs.udas.database.model.http;
 
-public class AsyncRequest {
+
+/**
+ *    Wannabe AJAX ! :)
+ *
+ *    Async http request implemented as Java thread !
+ *
+ * */
+
+public class AsyncRequest extends Thread{
 }
