@@ -38,7 +38,7 @@ that are containing data as city, province, injury type, invalidity category, wo
 You will need Maven 3.5.3. To pack executable jar we are currently using javafx-maven-plugin (zen.java). 
 
 cd /project/root
-mvn jfx:jar
+mvn compile exec:java
 
 Jar will be generated in /target/jfx/app folder.
 
