@@ -24,7 +24,6 @@
       <version>11</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -55,5 +54,27 @@
 
   <build>
     <finalName>udas-server</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.2</version>
+        <configuration>
+          <warName>${project.build.finalName}</warName>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <url>http://127.0.0.1:8080/manager/text</url>
+          <server>tomcat-udas-server</server>
+          <path>/udas-server</path>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
