@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ba.rs.udas</groupId>
-  <artifactId>udas-database</artifactId>
+  <artifactId>udas-client</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Baza podataka UDAS</name>
+  <name>udas-client</name>
 
   <description>App that connects to and manages database for UDAS Organization.</description>
 
@@ -121,6 +121,18 @@
       <artifactId>assertj-core</artifactId>
       <version>3.11.1</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.11.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.11.1</version>
     </dependency>
 
   </dependencies>
