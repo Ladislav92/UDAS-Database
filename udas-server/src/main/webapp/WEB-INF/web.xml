@@ -7,7 +7,7 @@
 
   <servlet>
     <servlet-name>udas-rpc-servlet</servlet-name>
-    <servlet-class>ba.rs.udas.database.model.endpoint.RpcServlet</servlet-class>
+    <servlet-class>ba.rs.udas.database.model.endpoint.RPCServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
