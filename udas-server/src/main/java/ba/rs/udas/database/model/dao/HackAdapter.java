@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class HackAdapter implements DataAdapter {
 
@@ -231,43 +229,4 @@ public class HackAdapter implements DataAdapter {
     return 0;
   }
 
-  public static void main(String[] args) {
-    List<Member> members = new ArrayList<>();
-
-    for(int i = 0; i < 10000; i++) {
-      members.add(
-          new Member(
-              1000 - i,
-              1000 - i + "Petar",
-              "Petrović",
-              "2233111234567",
-              "01-02-1954",
-              "051888999",
-              null,
-              "Banja Luka",
-              "Centar 1",
-              "Gundulićeva",
-              "17",
-              "5",
-              null,
-              "KV",
-              "Stolar",
-              "Nezaposlen",
-              "Mina",
-              "RVI",
-              "Sopstveni objekat",
-              "M",
-              "Od oca Mitra.",
-              new ArrayList<>(Collections.singletonList(new Injury(2, "Nadlaktica", true)))
-          ));
-    }
-
-    ObservableList<Member> observableList = FXCollections.observableArrayList(members);
-
-    long timeToSort = System.currentTimeMillis();
-    observableList.sort(Comparator.comparing(Member::getName));
-    long ended = System.currentTimeMillis();
-
-    System.out.println("Time spent sorting 10k members by name:" + (ended - timeToSort));
-  }
 }

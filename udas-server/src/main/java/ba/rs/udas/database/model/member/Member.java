@@ -4,35 +4,34 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javafx.beans.property.SimpleStringProperty;
 
 public class Member {
 
   private int memberID;
 
-  private SimpleStringProperty name;
-  private SimpleStringProperty surname;
-  private SimpleStringProperty ssn;
-  private SimpleStringProperty cityProvince;
-  private SimpleStringProperty street;
-  private SimpleStringProperty homeNumber;
-  private SimpleStringProperty householdMembers;
-  private SimpleStringProperty sex;
-  private SimpleStringProperty note;
-  private SimpleStringProperty birthDate; //TODO use date object ?!?!
-  private SimpleStringProperty deathDate; //TODO use date object ?!?!
-  private SimpleStringProperty city;
-  private SimpleStringProperty phoneNumber;
-  private SimpleStringProperty phoneNumber2;
-  private SimpleStringProperty employmentStatus;
-  private SimpleStringProperty educationLevel;
-  private SimpleStringProperty profession;
-  private SimpleStringProperty residence;
-  private SimpleStringProperty maritialStatus;
-  private SimpleStringProperty invalidityStatus;
+  private String name;
+  private String surname;
+  private String ssn;
+  private String cityProvince;
+  private String street;
+  private String homeNumber;
+  private String householdMembers;
+  private String sex;
+  private String note;
+  private String birthDate; //TODO use date object ?!?!
+  private String deathDate; //TODO use date object ?!?!
+  private String city;
+  private String phoneNumber;
+  private String phoneNumber2;
+  private String employmentStatus;
+  private String educationLevel;
+  private String profession;
+  private String residence;
+  private String maritialStatus;
+  private String invalidityStatus;
   private int invalidityCategory;
   private int invalidityPercentage;
-  private SimpleStringProperty injuryCause;
+  private String injuryCause;
   private List<Injury> injuries;
 
   public Member(Builder builder) {
@@ -70,177 +69,100 @@ public class Member {
       String housingQuestion, String sex, String note, List<Injury> injuries) {
 
     this.memberID = memberID;
-    this.name = new SimpleStringProperty(name);
-    this.surname = new SimpleStringProperty(surname);
-    this.ssn = new SimpleStringProperty(SSN);
-    this.birthDate = new SimpleStringProperty(dateOfBirth);
-    this.phoneNumber = new SimpleStringProperty(phoneNumber1);
-    this.phoneNumber2 = new SimpleStringProperty(phoneNumber2);
-    this.city = new SimpleStringProperty(city);
-    this.cityProvince = new SimpleStringProperty(cityProvince);
-    this.street = new SimpleStringProperty(street);
-    this.homeNumber = new SimpleStringProperty(homeNumber);
-    this.householdMembers = new SimpleStringProperty(peopleInHousehold);
-    this.deathDate = new SimpleStringProperty(dateOfDeath);
-    this.educationLevel = new SimpleStringProperty(educationLevel);
-    this.profession = new SimpleStringProperty(profession);
-    this.employmentStatus = new SimpleStringProperty(workStatus);
-    this.injuryCause = new SimpleStringProperty(injuryCause);
-    this.invalidityStatus = new SimpleStringProperty(invalidityStatus);
-    this.residence = new SimpleStringProperty(housingQuestion);
-    this.sex = new SimpleStringProperty(sex);
-    this.note = new SimpleStringProperty(note);
+    this.name = name;
+    this.surname = surname;
+    this.ssn = SSN;
+    this.birthDate = dateOfBirth;
+    this.phoneNumber = phoneNumber1;
+    this.phoneNumber2 = phoneNumber2;
+    this.city = city;
+    this.cityProvince = cityProvince;
+    this.street = street;
+    this.homeNumber = homeNumber;
+    this.householdMembers = peopleInHousehold;
+    this.deathDate = dateOfDeath;
+    this.educationLevel = educationLevel;
+    this.profession = profession;
+    this.employmentStatus = workStatus;
+    this.injuryCause = injuryCause;
+    this.invalidityStatus = invalidityStatus;
+    this.residence = housingQuestion;
+    this.sex = sex;
+    this.note = note;
     this.injuries = injuries;
   }
 
   public String getCity() {
-    return city.get();
-  }
-
-  public SimpleStringProperty cityProperty() {
     return city;
   }
 
-  public SimpleStringProperty nameProperty() {
-    return name;
-  }
-
-  public SimpleStringProperty surnameProperty() {
-    return surname;
-  }
-
   public String getSsn() {
-    return ssn.get();
-  }
-
-  public SimpleStringProperty ssnProperty() {
     return ssn;
   }
 
   public String getCityProvince() {
-    return cityProvince.get();
-  }
-
-  public SimpleStringProperty cityProvinceProperty() {
     return cityProvince;
   }
 
   public String getStreet() {
-    return street.get();
-  }
-
-  public SimpleStringProperty streetProperty() {
     return street;
   }
 
   public String getHomeNumber() {
-    return homeNumber.get();
-  }
-
-  public SimpleStringProperty homeNumberProperty() {
     return homeNumber;
   }
 
   public String getHouseholdMembers() {
-    return householdMembers.get();
+    return householdMembers;
   }
 
   public String getSex() {
-    return sex.get();
-  }
-
-  public SimpleStringProperty sexProperty() {
     return sex;
   }
 
   public String getNote() {
-    return note.get();
-  }
-
-  public SimpleStringProperty noteProperty() {
     return note;
   }
 
   public String getBirthDate() {
-    return birthDate.get();
-  }
-
-  public SimpleStringProperty birthDateProperty() {
     return birthDate;
   }
 
   public String getDeathDate() {
-    return deathDate.get();
-  }
-
-  public SimpleStringProperty deathDateProperty() {
     return deathDate;
   }
 
   public String getPhoneNumber() {
-    return phoneNumber.get();
-  }
-
-  public SimpleStringProperty phoneNumberProperty() {
     return phoneNumber;
   }
 
   public String getPhoneNumber2() {
-    return phoneNumber2.get();
-  }
-
-  public SimpleStringProperty phoneNumber2Property() {
     return phoneNumber2;
   }
 
   public String getEmploymentStatus() {
-    return employmentStatus.get();
-  }
-
-  public SimpleStringProperty employmentStatusProperty() {
     return employmentStatus;
   }
 
   public String getEducationLevel() {
-    return educationLevel.get();
-  }
-
-  public SimpleStringProperty educationLevelProperty() {
     return educationLevel;
   }
 
   public String getProfession() {
-    return profession.get();
-  }
-
-  public SimpleStringProperty professionProperty() {
     return profession;
   }
 
   public String getResidence() {
-    return residence.get();
-  }
-
-  public SimpleStringProperty residenceProperty() {
     return residence;
   }
 
   public String getMaritialStatus() {
-    return maritialStatus.get();
-  }
-
-  public SimpleStringProperty maritialStatusProperty() {
     return maritialStatus;
   }
 
   public String getInvalidityStatus() {
-    return invalidityStatus.get();
-  }
-
-  public SimpleStringProperty invalidityStatusProperty() {
     return invalidityStatus;
   }
-
   public int getInvalidityCategory() {
     return invalidityCategory;
   }
@@ -250,10 +172,6 @@ public class Member {
   }
 
   public String getInjuryCause() {
-    return injuryCause.get();
-  }
-
-  public SimpleStringProperty injuryCauseProperty() {
     return injuryCause;
   }
 
@@ -297,11 +215,11 @@ public class Member {
   }
 
   public String getName() {
-    return name.get();
+    return name;
   }
 
   public String getSurname() {
-    return surname.get();
+    return surname;
   }
 
   public boolean hasMatch(Map<String, List<String>> parameters) {
@@ -429,68 +347,68 @@ public class Member {
   }
 
   public static class Builder{
-    private SimpleStringProperty name;
-    private SimpleStringProperty surname;
-    private SimpleStringProperty ssn;
-    private SimpleStringProperty cityProvince;
-    private SimpleStringProperty street;
-    private SimpleStringProperty homeNumber;
-    private SimpleStringProperty householdMembers;
-    private SimpleStringProperty sex;
-    private SimpleStringProperty note;
+    private String name;
+    private String surname;
+    private String ssn;
+    private String cityProvince;
+    private String street;
+    private String homeNumber;
+    private String householdMembers;
+    private String sex;
+    private String note;
     private int memberID;
-    private SimpleStringProperty birthDate;
-    private SimpleStringProperty deathDate;
-    private SimpleStringProperty city;
-    private SimpleStringProperty phoneNumber;
-    private SimpleStringProperty phoneNumber2;
-    private SimpleStringProperty employmentStatus;
-    private SimpleStringProperty educationLevel;
-    private SimpleStringProperty profession;
-    private SimpleStringProperty residence;
-    private SimpleStringProperty maritialStatus;
-    private SimpleStringProperty invalidityStatus;
+    private String birthDate;
+    private String deathDate;
+    private String city;
+    private String phoneNumber;
+    private String phoneNumber2;
+    private String employmentStatus;
+    private String educationLevel;
+    private String profession;
+    private String residence;
+    private String maritialStatus;
+    private String invalidityStatus;
     private int invalidityCategory;
     private int invalidityPercentage;
-    private SimpleStringProperty injuryCause;
+    private String injuryCause;
     private List<Injury> injuries;
 
     public Builder(String name, String surname){
-      this.name = new SimpleStringProperty(name);
-      this.surname = new SimpleStringProperty(surname);
+      this.name = new String(name);
+      this.surname = new String(surname);
     }
 
     public Builder withSsn(String ssn) {
-      this.ssn = new SimpleStringProperty(ssn);
+      this.ssn = ssn;
       return this;
     }
 
     public Builder inCityProvince(String cityProvince) {
-      this.cityProvince = new SimpleStringProperty(cityProvince);
+      this.cityProvince = cityProvince;
       return this;
     }
 
     public Builder atStreet(String street) {
-      this.street = new SimpleStringProperty(street);
+      this.street = street;
       return this;
     }
 
     public Builder withHomeNumber(String homeNumber) {
-      this.homeNumber = new SimpleStringProperty(homeNumber);
+      this.homeNumber = homeNumber;
       return this;
     }
     public Builder withHousholdMembers(String householdMembers) {
-      this.householdMembers = new SimpleStringProperty(householdMembers);
+      this.householdMembers = householdMembers;
       return this;
     }
 
     public Builder ofSex(String sex) {
-      this.sex = new SimpleStringProperty(sex);
+      this.sex = sex;
       return this;
     }
 
     public Builder withNote(String note) {
-      this.note = new SimpleStringProperty(note);
+      this.note = note;
       return this;
     }
 
@@ -500,56 +418,56 @@ public class Member {
     }
 
     public Builder withBirthDate(String birthDate) {
-      this.birthDate = new SimpleStringProperty(birthDate);
+      this.birthDate = birthDate;
       return this;
     }
 
     public Builder withDeathDate(String deathDate) {
-      this.deathDate = new SimpleStringProperty(deathDate);
+      this.deathDate = deathDate;
       return this;
     }
 
     public Builder inCity(String city) {
-      this.city = new SimpleStringProperty(city);
+      this.city = city;
       return this;
     }
 
     public Builder withPhoneNumber(String phoneNumber) {
-      this.phoneNumber = new SimpleStringProperty(phoneNumber);
+      this.phoneNumber = phoneNumber;
       return this;
     }
 
     public Builder withPhoneNumber2(String phoneNumber2) {
-      this.phoneNumber2 = new SimpleStringProperty(phoneNumber2);
+      this.phoneNumber2 = phoneNumber2;
       return this;
     }
 
     public Builder withEmploymentStatus(String employmentStatus){
-      this.employmentStatus = new SimpleStringProperty(employmentStatus);
+      this.employmentStatus = employmentStatus;
       return this;
     }
     public Builder withEducationLevel(String educationLevel){
-      this.educationLevel = new SimpleStringProperty(educationLevel);
+      this.educationLevel = educationLevel;
       return this;
     }
 
     public Builder withProfession(String profession){
-      this.profession = new SimpleStringProperty(profession);
+      this.profession = profession;
       return this;
     }
 
     public Builder withResidence(String residence){
-      this.residence = new SimpleStringProperty(residence);
+      this.residence = residence;
       return this;
     }
 
     public Builder withMaritialStatus(String maritialStatus){
-      this.maritialStatus = new SimpleStringProperty(maritialStatus);
+      this.maritialStatus = maritialStatus;
       return this;
     }
 
     public Builder withInvalidityStatus(String invalidityStatus){
-      this.invalidityStatus = new SimpleStringProperty(invalidityStatus);
+      this.invalidityStatus = invalidityStatus;
       return this;
     }
 
@@ -564,7 +482,7 @@ public class Member {
     }
 
     public Builder withInjuryCause(String injuryCause){
-      this.injuryCause = new SimpleStringProperty(injuryCause);
+      this.injuryCause = injuryCause;
       return this;
     }
 
