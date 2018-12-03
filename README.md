@@ -2,6 +2,9 @@
 JavaFX app that connects to and manages database for Organization UDAS
 
 
+Chat with us on [discord server](https://discord.gg/yRpVrQC)
+
+
 # Currently application is in transition to network one.
 
 JavaServlets running in Tomcatserver are used as as backend that communicates with JavaFX app trough JSON (wannabe rpc).
