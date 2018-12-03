@@ -235,10 +235,4 @@ public class HackAdapter implements DataAdapter {
     return 0;
   }
 
-
-  public void getSomeShitFromHere(HttpServletRequest req, HttpServletResponse resp) {
-
-    System.out.println("CALLED  !");
-
-  }
 }

@@ -23,13 +23,8 @@ public class RPCServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		logger.info(req.toString());
-
 		String c = req.getHeader("X-UDAS-class");
 		String m = req.getHeader("X-UDAS-method");
-
-		logger.info("X-UDAS-class:" + c );
-		logger.info("X-UDAS-method:" + m );
 
 		if (c == null || m == null) {
 			logger.error("Unable to get class and method from request");
