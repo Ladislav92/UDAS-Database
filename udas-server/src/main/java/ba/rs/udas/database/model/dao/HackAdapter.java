@@ -2,6 +2,12 @@ package ba.rs.udas.database.model.dao;
 
 import ba.rs.udas.database.model.member.Injury;
 import ba.rs.udas.database.model.member.Member;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -229,4 +235,10 @@ public class HackAdapter implements DataAdapter {
     return 0;
   }
 
+
+  public void getSomeShitFromHere(HttpServletRequest req, HttpServletResponse resp) {
+
+    System.out.println("CALLED  !");
+
+  }
 }

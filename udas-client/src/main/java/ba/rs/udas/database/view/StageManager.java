@@ -178,8 +178,10 @@ public final class StageManager {
 
       String bundleName = toBundleName(baseName, locale);
       String resourceName = toResourceName(bundleName, "properties");
+
       ResourceBundle bundle = null;
       InputStream stream = null;
+
       if (reload) {
         URL url = loader.getResource(resourceName);
         if (url != null) {
