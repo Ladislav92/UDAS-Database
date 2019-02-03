@@ -53,12 +53,7 @@ public class RPCServlet extends HttpServlet {
 
 			final Method method = clazz.getMethod(m, HttpServletRequest.class, HttpServletResponse.class);
 
-			if (method.isAnnotationPresent(DoNotCheckMe.class) && method.getName().equals("login")) {
-				method.invoke(clazz.getDeclaredConstructor().newInstance(), request, response);
-				return;
-			}
-
-			if (method.isAnnotationPresent(DoNotCheckMe.class) && !this.isLoggedIn(request)) {
+			if (!method.isAnnotationPresent(DoNotCheckMe.class) && !this.isLoggedIn(request)) {
 				JsonObject responseObj = new JsonObject();
 
 				responseObj.addProperty("success", false);
