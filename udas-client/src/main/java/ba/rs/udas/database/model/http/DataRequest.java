@@ -62,4 +62,8 @@ public class DataRequest {
                 "{\"key\" : \"value\"}"
                 ));
     }
+
+    public static String doPost(String s, String getMembers) {
+        return doPost(s, getMembers, "");
+    }
 }
