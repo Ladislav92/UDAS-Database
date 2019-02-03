@@ -40,11 +40,11 @@ public class RPCServlet extends HttpServlet {
 		String c = request.getHeader(RPC_CLASS);
 		String m = request.getHeader(RPC_METHOD);
 
+		logger.info("Received request...");
+
 		if (c == null || m == null) {
 			logger.error("Unable to get class and method from request");
-
 			response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-
 			return;
 		}
 
@@ -53,7 +53,12 @@ public class RPCServlet extends HttpServlet {
 
 			final Method method = clazz.getMethod(m, HttpServletRequest.class, HttpServletResponse.class);
 
-			if (!method.isAnnotationPresent(DoNotCheckMe.class) && !this.isLoggedIn(request)) {
+			if (method.isAnnotationPresent(DoNotCheckMe.class) && method.getName().equals("login")) {
+				method.invoke(clazz.getDeclaredConstructor().newInstance(), request, response);
+				return;
+			}
+
+			if (method.isAnnotationPresent(DoNotCheckMe.class) && !this.isLoggedIn(request)) {
 				JsonObject responseObj = new JsonObject();
 
 				responseObj.addProperty("success", false);
@@ -67,11 +72,9 @@ public class RPCServlet extends HttpServlet {
 
 			method.invoke(clazz.getDeclaredConstructor().newInstance(), request, response);
 		} catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException | IOException e) {
-			logger.error(e);
-
+			logger.error(e.getStackTrace());
 			response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
 		}
-
 	}
 
 	private boolean isLoggedIn(final HttpServletRequest request) {
@@ -83,5 +86,3 @@ public class RPCServlet extends HttpServlet {
 		return tokens.stream().anyMatch(item -> token.get().equals(item.getToken()));
 	}
 }
-
-
