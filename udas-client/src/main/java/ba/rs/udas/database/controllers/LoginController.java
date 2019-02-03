@@ -1,9 +1,12 @@
 package ba.rs.udas.database.controllers;
 
 import ba.rs.udas.database.Main;
+import ba.rs.udas.database.model.http.DataRequest;
 import ba.rs.udas.database.view.LanguageManager;
 import ba.rs.udas.database.view.LanguageManager.Language;
 import java.util.concurrent.ForkJoinPool;
+
+import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,44 +68,45 @@ public final class LoginController implements Controller {
     Platform.runLater(() -> loginField.getParent().requestFocus());
   }
 
+  @FXML
+  public void onLoginButtonClicked() {
+
+    String username = loginField.getText().trim();
+    String password = passwordField.getText().trim();
+
+    String responseBody = DataRequest.doPost(
+            "ba.rs.udas.database.model.endpoint.Login",
+            "login",
+            "{\"username\":\"" + username + "\",\"password\" : \"" + password + "\"}");
+
+    LoginResponse login = new Gson().fromJson(responseBody, LoginResponse.class);
+
+    if (login.success) {
+      DataRequest.setToken(login.token);
+      Main.getMainStageManager().changeScene(NavigationController.class);
+    } else {
+      showLoginErrorDialog("Invalid username or password");
+    }
+  }
+
   //TODO: develop further
   public void showLoginErrorDialog(String message) {
     notificationPane.setText(message);
     notificationPane.show();
     ForkJoinPool.commonPool()
-                .execute(() -> {
-                  try {
-                    Thread.sleep(3000);
-                    Platform.runLater(notificationPane::hide);
-                  } catch (InterruptedException e) {
-                    //ignored
-                  }
-                });
+            .execute(() -> {
+              try {
+                Thread.sleep(3000);
+                Platform.runLater(notificationPane::hide);
+              } catch (InterruptedException e) {
+                //ignored
+              }
+            });
   }
 
-  /**
-   * Place where DataAdapter is created if login was successful.
-   * <p>
-   * NOTE: MySqlAdapter can be switched here to any other implementation of DataAdapter without any impact on
-   * the application if DataAdapter is implemented correctly. https://imgflip.com/i/2al8ve
-   */
-
-  @FXML
-  public void onLoginButtonClicked() {
-    String username = loginField.getText();
-    String password = passwordField.getText();
-
-    Main.getMainStageManager().changeScene(NavigationController.class);
-
-
-    //TODO httprequest at one point
-
-//    try {
-//      ConnectionManager.connect(username, password);
-//    } catch (SQLException e) {
-//      System.out.println(e); //TODO: proper logging
-//      showLoginErrorDialog(e.getMessage());
-//    }
+  private class LoginResponse {
+    String token;
+    boolean success;
   }
 
   @FXML
